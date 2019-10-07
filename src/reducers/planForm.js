@@ -4,7 +4,54 @@ const initialState = {
     locationId: '',
     startDate: {},
     endDate: {},
-    tags: []
+    chosen_tags: [],
+    available_tags: [
+        {
+            text: "chillout",
+            key: "chillout",
+            value: "chillout",
+        },
+        {
+            text: "zwiedzanie",
+            key: "zwiedzanie",
+            value: "zwiedzanie",
+        },
+        {
+            text: "życie nocne",
+            key: "życie nocne",
+            value: "życie nocne",
+        },
+        {
+            text: "romantyczny wyjazd we dwoje",
+            key: "romantyczny wyjazd we dwoje",
+            value: "romantyczny wyjazd we dwoje",
+        },
+        {
+            text: "trip ze znajomymi",
+            key: "trip ze znajomymi",
+            value: "trip ze znajomymi",
+        },
+        {
+            text: "rodzinne wakacje",
+            key: "rodzinne wakacje",
+            value: "rodzinne wakacje",
+        },
+        {
+            text: "miasto",
+            key: "miasto",
+            value: "miasto",
+        },
+        {
+            text: "plażowanie",
+            key: "plażowanie",
+            value: "plażowanie",
+        },
+        {
+            text: "aktywny wypoczynek",
+            key: "aktywny wypoczynek",
+            value: "aktywny wypoczynek",
+        }
+    ]
 };
 
 function fillField(action, state) {

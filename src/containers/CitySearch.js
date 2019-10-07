@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {fetchCitySuggestions} from '../actions/suggestCities';
+import {PLAN_FORM} from "../actions";
 import {Dropdown} from "semantic-ui-react";
 
 const CitySearch = (props) => {
@@ -38,7 +38,7 @@ const mapDispatchToProps = (dispatch) => {
             if (searchQuery.length < minCharacters){
                 return;
             }
-            dispatch(fetchCitySuggestions(searchQuery));
+            dispatch(PLAN_FORM.fetchCitySuggestions(searchQuery));
         }
     }
 };

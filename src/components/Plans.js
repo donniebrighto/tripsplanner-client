@@ -12,10 +12,6 @@ class Plans extends Component {
                     title="Plany wycieczek"
                     subtitle="Przeglądaj plany stworzone przez innych użytkowników"
                     iconName="briefcase"
-                    link={{
-                        text: "Dodaj własny plan",
-                        path: "/plans/create"
-                    }}
                 />
                 <PlaceholdersGrid/>
             </Container>

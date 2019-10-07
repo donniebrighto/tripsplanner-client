@@ -24,11 +24,13 @@ class SectionHeader extends Component{
                         </Header.Subheader>
                     </Header.Content>
                 </Header>
+                {!!link &&
                 <Link to={link.path}>
                     <Button color="black">
                         {link.text}
                     </Button>
                 </Link>
+                }
             </Segment>
         );
     }

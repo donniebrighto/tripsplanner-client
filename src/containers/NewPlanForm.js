@@ -1,130 +1,82 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
-import {Button, Container, Form, Header, Icon} from "semantic-ui-react";
+import {Button, Container, Form, Icon} from "semantic-ui-react";
 
 import {PLAN_FORM} from "../actions";
 import CitySearch from "./CitySearch";
+import SectionHeader from "../components/SectionHeader";
 
 const LABELS = {
     NAME: "name",
     CITY: "city",
     START_DATE: "startDate",
     END_DATE: "endDate",
-    TAGS: "tags"
+    TAGS: "chosen_tags"
 };
 
-class NewPlanForm extends Component{
-
-    //TODO - handle TAGS in form
-    // handleTagAddition(event, {value}){
-    //     this.setState({
-    //         ...this.state,
-    //         addedTags: [
-    //             ...this.state.tags,
-    //             {
-    //                 key: id++,
-    //                 text: value,
-    //                 value
-    //             }
-    //         ]
-    //     })
-    // }
-
-    // handleFillingData(label){
-    //     const self = this;
-    //
-    //     if (label === LABELS.CITY) {
-    //         return function (event, {key, value}) {
-    //             self.setState({
-    //                 ...self.state,
-    //                 locationId: key,
-    //                 city: value
-    //             })
-    //         };
-    //     }
-    //
-    //     if (label === LABELS.TAGS) {
-    //         return function(event, data){
-    //             console.log(data);
-    //             let nextState = {...self.state};
-    //             nextState[label] = data.value;
-    //             self.setState(nextState);
-    //         };
-    //     }
-    //
-    //     return function(event, {value}){
-    //         let nextState = {...self.state};
-    //         nextState[label] = value;
-    //         self.setState(nextState);
-    //     };
-    // }
-
-    render() {
-        return (
-            <Container>
-                <Button icon labelPosition='left' color="black">
-                    Powrót
-                    <Icon name='arrow alternate circle left outline' />
+const NewPlanForm = (props) => {
+    return (
+        <Container>
+            <SectionHeader
+                title="Kreator Planu"
+                subtitle="Stwórz swój plan razem ze znajomymi"
+                iconName="edit outline"
+            />
+            <Form>
+                <Form.Field>
+                    <label>Nazwa Planu</label>
+                    <Form.Input
+                        type="text"
+                        placeholder="np. Fajna majóweczka w Budapeszcie"
+                        value={props.name}
+                        onChange={props.handleFillingData(LABELS.NAME)}
+                    />
+                </Form.Field>
+                <Form.Field>
+                    <label>Miasto</label>
+                    <CitySearch
+                        value={props.city}
+                        minCharacters={3}
+                        onChange={props.handleFillingCity}
+                    />
+                </Form.Field>
+                <Form.Field>
+                    <label>Data rozpoczęcia</label>
+                    <Form.Input
+                        type="date"
+                        value={props.startDate}
+                        onChange={props.handleFillingData(LABELS.START_DATE)}
+                    />
+                </Form.Field>
+                <Form.Field>
+                    <label>Data zakończenia</label>
+                    <Form.Input
+                        type="date"
+                        value={props.endDate}
+                        onChange={props.handleFillingData(LABELS.END_DATE)}
+                    />
+                </Form.Field>
+                <Form.Field>
+                    <label>Tagi</label>
+                    <Form.Dropdown
+                        options={props.available_tags}
+                        placeholder='Dodaj tagi'
+                        search
+                        selection
+                        fluid
+                        multiple
+                        value={props.chosen_tags}
+                        onChange={props.handleFillingData(LABELS.TAGS)}
+                    />
+                </Form.Field>
+                <Button icon labelPosition='right' floated='right' color='teal'>
+                    Next
+                    <Icon name='right arrow' />
                 </Button>
-                <Header as='h2'>
-                    <Icon name='edit outline' />
-                    <Header.Content>Kreator Planu</Header.Content>
-                </Header>
-                <Form>
-                    <Form.Field>
-                        <label>Nazwa Planu</label>
-                        <Form.Input
-                            type="text"
-                            placeholder="np. Fajna majóweczka w Budapeszcie"
-                            value={this.props.name}
-                            onChange={this.props.handleFillingData(LABELS.NAME)}
-                        />
-                    </Form.Field>
-                    <Form.Field>
-                        <label>Miasto</label>
-                        <CitySearch
-                            value={this.props.city}
-                            minCharacters={3}
-                            onChange={this.props.handleFillingCity}
-                        />
-                    </Form.Field>
-                    <Form.Field>
-                        <label>Data rozpoczęcia</label>
-                        <Form.Input
-                            type="date"
-                            value={this.props.startDate}
-                            onChange={this.props.handleFillingData(LABELS.START_DATE)}
-                        />
-                    </Form.Field>
-                    <Form.Field>
-                        <label>Data zakończenia</label>
-                        <Form.Input
-                            type="date"
-                            value={this.props.endDate}
-                            onChange={this.props.handleFillingData(LABELS.END_DATE)}
-                        />
-                    </Form.Field>
-                    {/*<Form.Field>*/}
-                    {/*    <label>Tagi</label>*/}
-                    {/*    <Form.Dropdown*/}
-                    {/*        options={addedTags}*/}
-                    {/*        placeholder='Dodaj tagi'*/}
-                    {/*        search*/}
-                    {/*        selection*/}
-                    {/*        fluid*/}
-                    {/*        multiple*/}
-                    {/*        allowAdditions*/}
-                    {/*        value={tags}*/}
-                    {/*        onAddItem={this.handleTagAddition}*/}
-                    {/*        onChange={this.handleFillingData(LABELS.TAGS)}*/}
-                    {/*    />*/}
-                    {/*</Form.Field>*/}
-                    <Button type='submit'>Submit</Button>
-                </Form>
-            </Container>
-        );
-    }
-}
+            </Form>
+        </Container>
+    );
+};
 
 const mapStateToProps = (state) => {
     const {
@@ -133,7 +85,8 @@ const mapStateToProps = (state) => {
         locationId,
         startDate,
         endDate,
-        tags
+        chosen_tags,
+        available_tags
     } = state.planForm;
 
     return {
@@ -142,14 +95,15 @@ const mapStateToProps = (state) => {
         locationId,
         startDate,
         endDate,
-        tags
+        chosen_tags,
+        available_tags
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         handleFillingData: (label) => {
-            return function (event, {value}){
+            return function (event, {value}) {
                 dispatch(PLAN_FORM.fillField(label, value));
             }
         },

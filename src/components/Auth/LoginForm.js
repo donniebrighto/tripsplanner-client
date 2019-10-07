@@ -3,6 +3,7 @@ import {Button, Form, Grid, Header, Message, Segment} from 'semantic-ui-react'
 import {NavLink} from "react-router-dom";
 import {connect} from 'react-redux';
 
+import LABELS from '../../reducers/auth/labels';
 import {AUTHENTICATION} from "../../actions";
 
 const LoginForm = (props) => (
@@ -19,7 +20,7 @@ const LoginForm = (props) => (
                         iconPosition='left'
                         placeholder='Nazwa użytkownika'
                         value={props.login}
-                        onChange={props.fillUsername}
+                        onChange={props.fillField(LABELS.USERNAME)}
                     />
                     <Form.Input
                         fluid
@@ -28,7 +29,7 @@ const LoginForm = (props) => (
                         placeholder='Hasło'
                         type='password'
                         value={props.password}
-                        onChange={props.fillPassword}
+                        onChange={props.fillField(LABELS.PASSWORD)}
                     />
 
                     <Button color='teal' fluid size='large'>
@@ -44,11 +45,10 @@ const LoginForm = (props) => (
 );
 
 const mapStateToProps = ({authentication}) => ({...authentication});
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
     return {
-        fillUsername: (event, {value}) => dispatch(AUTHENTICATION.fillUsername(value)),
-        fillPassword: (event, {value}) => dispatch(AUTHENTICATION.fillPassword(value)),
-        submit: (login, password) => () => dispatch(AUTHENTICATION.login(login, password, ownProps.history)),
+        fillField: (label) => (event, {value}) => dispatch(AUTHENTICATION.fillField(label, value)),
+        submit: (login, password) => () => dispatch(AUTHENTICATION.signin(login, password)),
     }
 };
 

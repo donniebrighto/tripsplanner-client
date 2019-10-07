@@ -1,8 +1,6 @@
-import iso3_to_iso2_map from '../utils/countryCodeMap';
-import {PLAN_FORM} from "./index";
+import {APP_CODE, APP_ID} from "./config";
+import iso3_to_iso2_map from "../../utils/countryCodeMap";
 
-const APP_ID = "FmhcQxXbP2QLaJZ55ipx";
-const APP_CODE = "o9Fupk1JS1dCxzd4Q3xh7Q";
 const EMPTY_INPUT_RESULT = [];
 
 function createResourceURLWithParam(param) {
@@ -13,7 +11,7 @@ function createResourceURLWithParam(param) {
         `&language=pl`;
 }
 
-function fetchSuggestions(input) {
+export function fetchCitiesSuggestion(input) {
     const resourceUrl = createResourceURLWithParam(input);
 
     return fetch(resourceUrl)
@@ -39,14 +37,4 @@ function fetchSuggestions(input) {
                 }
             });
         });
-}
-
-export function fetchCitySuggestions(input) {
-    return (dispatch) => {
-        dispatch(PLAN_FORM.requestCitySuggestion());
-        fetchSuggestions(input)
-            .then(suggestions => {
-                dispatch(PLAN_FORM.retrieveCitySuggestion(suggestions))
-            });
-    }
 }

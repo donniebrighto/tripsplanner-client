@@ -4,6 +4,8 @@ import {NavLink} from "react-router-dom";
 import {AUTHENTICATION} from "../../actions";
 import {connect} from "react-redux";
 
+import LABELS from '../../reducers/auth/labels';
+
 const RegisterForm = (props) => (
     <Grid textAlign='center' verticalAlign="middle" style={{ height: '60vh' }}>
         <Grid.Column style={{maxWidth: '450px'}}>
@@ -21,26 +23,26 @@ const RegisterForm = (props) => (
                         fluid
                         iconPosition='left'
                         placeholder='Nazwa użytkownika'
-                        onChange={props.fillUsername}
+                        onChange={props.fillField(LABELS.USERNAME)}
                     />
                     <Form.Input
                         fluid
                         iconPosition='left'
                         placeholder='Imie'
-                        onChange={props.fillFirstName}
+                        onChange={props.fillField(LABELS.FIRST_NAME)}
                     />
                     <Form.Input
                         fluid
                         iconPosition='left'
                         placeholder='Nazwisko'
-                        onChange={props.fillLastName}
+                        onChange={props.fillField(LABELS.LAST_NAME)}
                     />
                     <Form.Input
                         fluid
                         iconPosition='left'
                         placeholder='Hasło'
                         type='password'
-                        onChange={props.fillPassword}
+                        onChange={props.fillField(LABELS.PASSWORD)}
                     />
 
                     <Button color='teal' fluid size='large'>
@@ -58,11 +60,8 @@ const RegisterForm = (props) => (
 const mapStateToProps = ({authentication}) => ({...authentication});
 const mapDispatchToProps = (dispatch) => {
     return {
-        fillUsername: (event, {value}) => dispatch(AUTHENTICATION.fillUsername(value)),
-        fillPassword: (event, {value}) => dispatch(AUTHENTICATION.fillPassword(value)),
-        fillFirstName: (event, {value}) => dispatch(AUTHENTICATION.fillFirstName(value)),
-        fillLastName: (event, {value}) => dispatch(AUTHENTICATION.fillLastName(value)),
-        submit: (login, firstName, lastName, password) => () => dispatch(AUTHENTICATION.register(login, firstName, lastName, password)),
+        fillField: (label) => (event, {value}) => dispatch(AUTHENTICATION.fillField(label, value)),
+        submit: (login, firstName, lastName, password) => () => dispatch(AUTHENTICATION.signup(login, firstName, lastName, password)),
     }
 };
 

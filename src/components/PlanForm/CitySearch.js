@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {PLAN_FORM} from "../actions";
+import {PLAN_FORM} from "../../actions";
 import {Dropdown} from "semantic-ui-react";
 
 const CitySearch = (props) => {
@@ -25,7 +25,7 @@ const CitySearch = (props) => {
 };
 
 const mapStateToProps = (state) => {
-    const {suggestions, isLoading} = state.citiesSuggestions;
+    const {suggestions, isLoading} = state.citySuggestion;
     return {
         suggestions,
         isLoading
@@ -38,7 +38,7 @@ const mapDispatchToProps = (dispatch) => {
             if (searchQuery.length < minCharacters){
                 return;
             }
-            dispatch(PLAN_FORM.fetchCitySuggestions(searchQuery));
+            dispatch(PLAN_FORM.cityAutocomplete(searchQuery));
         }
     }
 };

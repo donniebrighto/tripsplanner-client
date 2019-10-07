@@ -6,7 +6,7 @@ import Footer from './components/Footer';
 import Menu from './components/Menu/Menu';
 import Plans from './components/Plans';
 import Home from './components/Home';
-import NewPlanForm from "./containers/NewPlanForm";
+import NewPlanForm from "./components/PlanForm/NewPlanForm";
 import LoginForm from "./components/Auth/LoginForm";
 import RegisterForm from "./components/Auth/RegisterForm";
 

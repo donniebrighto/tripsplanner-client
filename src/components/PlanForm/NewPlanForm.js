@@ -2,9 +2,9 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Button, Container, Form, Icon} from "semantic-ui-react";
 
-import {PLAN_FORM} from "../actions";
+import {PLAN_FORM} from "../../actions";
 import CitySearch from "./CitySearch";
-import SectionHeader from "../components/SectionHeader";
+import SectionHeader from "../SectionHeader";
 
 const LABELS = {
     NAME: "name",

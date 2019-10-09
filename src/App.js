@@ -9,6 +9,7 @@ import Home from './components/Home';
 import NewPlanForm from "./components/PlanForm/NewPlanForm";
 import LoginForm from "./components/Auth/LoginForm";
 import RegisterForm from "./components/Auth/RegisterForm";
+import HereMap from "./api/here/map/HereMap";
 
 const isUserAuthenticated = () => !!localStorage.getItem('userId');
 
@@ -27,6 +28,7 @@ const SemanticApp = () => (
             <ProtectedRoute isUserAuthenticated={isUserAuthenticated} path="/create" component={NewPlanForm}/>
             <Route path="/login" component={LoginForm}/>
             <Route path="/register" component={RegisterForm}/>
+            <Route path="/map" component={HereMap}/>
         </Switch>
 
         <Footer/>

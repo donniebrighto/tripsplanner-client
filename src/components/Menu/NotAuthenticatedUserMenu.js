@@ -1,21 +1,13 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Icon, Menu} from "semantic-ui-react";
-import {NavLink} from "react-router-dom";
+import {endpoints} from "../../api/local/config";
 
-class NotAuthenticatedUserMenu extends Component {
-
-    render() {
-        return (
-            <Menu.Menu position="right">
-                <Menu.Item as={NavLink} to="/login">
-                    <Icon name="sign-in"/>Logowanie
-                </Menu.Item>
-                <Menu.Item as={NavLink} to="/register">
-                    <Icon name="signup"/>Rejestracja
-                </Menu.Item>
-            </Menu.Menu>
-        );
-    }
-}
+const NotAuthenticatedUserMenu = () => (
+    <Menu.Menu position="right">
+        <Menu.Item as='a' href={endpoints.auth.oauth2}>
+            <Icon name="google plus" color="red"/>Dołącz
+        </Menu.Item>
+    </Menu.Menu>
+);
 
 export default NotAuthenticatedUserMenu;

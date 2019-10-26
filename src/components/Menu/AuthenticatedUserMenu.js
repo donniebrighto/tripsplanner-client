@@ -1,41 +1,51 @@
-import React, {Component} from 'react';
-import {Dropdown, Icon, Menu} from "semantic-ui-react";
+import React from 'react';
+import {Dropdown, Icon, Image, Menu} from "semantic-ui-react";
 import {NavLink} from "react-router-dom";
+import {connect} from "react-redux";
+import {AUTHENTICATION} from "../../actions";
 
-class AuthenticatedUserMenu extends Component {
-
-    render() {
+const trigger = (props) => {
+    if (!props.isLoading && props.userAuthenticated) {
+        const {imageUrl, name} = props.currentUser;
         return (
-            <Menu.Menu position="right">
-                <Menu.Item as={NavLink} to="/create">
-                    <Icon name="add"/>Stwórz
-                </Menu.Item>
-                <Menu.Item as={NavLink} to="/plans">
-                    <Icon name="sort amount down"/>Przegladaj
-                </Menu.Item>
-                <Menu.Item as='a'>
-                    <Icon name="time"/>Aktywne
-                </Menu.Item>
-                <Dropdown item simple text='Profil'>
-                    <Dropdown.Menu>
-                        <Dropdown.Item>List Item</Dropdown.Item>
-                        <Dropdown.Item>List Item</Dropdown.Item>
-                        <Dropdown.Divider/>
-                        <Dropdown.Header>Header Item</Dropdown.Header>
-                        <Dropdown.Item>
-                            <i className='dropdown icon'/>
-                            <span className='text'>Submenu</span>
-                            <Dropdown.Menu>
-                                <Dropdown.Item>List Item</Dropdown.Item>
-                                <Dropdown.Item>List Item</Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown.Item>
-                        <Dropdown.Item>List Item</Dropdown.Item>
-                    </Dropdown.Menu>
-                </Dropdown>
-            </Menu.Menu>
-        );
+            <span>
+              <Image avatar src={imageUrl}/>{name}
+            </span>
+        )
     }
-}
+};
 
-export default AuthenticatedUserMenu;
+const AuthenticatedUserMenu = (props) => (
+    <Menu.Menu position="right">
+        <Menu.Item as={NavLink} to="/create">
+            <Icon name="add"/>Stwórz
+        </Menu.Item>
+        <Menu.Item as={NavLink} to="/trips">
+            <Icon name="sort amount down"/>Przegladaj
+        </Menu.Item>
+        <Menu.Item as='a'>
+            <Icon name="time"/>Aktywne
+        </Menu.Item>
+        <Dropdown
+            loading={props.isLoading}
+            trigger={trigger(props)}
+            item
+            simple
+        >
+            <Dropdown.Menu>
+                <Dropdown.Item onClick={props.logout}>
+                    <Icon name="log out"/>Wyloguj
+                </Dropdown.Item>
+            </Dropdown.Menu>
+        </Dropdown>
+    </Menu.Menu>
+);
+
+const mapStateToProps = (state) => ({...state.authentication});
+const mapDispatchToProps = (dispatch) => ({
+    logout: () => {
+        localStorage.removeItem("accessToken");
+        dispatch(AUTHENTICATION.logout())
+    }
+});
+export default connect(mapStateToProps, mapDispatchToProps)(AuthenticatedUserMenu);

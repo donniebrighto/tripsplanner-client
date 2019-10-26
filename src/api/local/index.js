@@ -1,7 +1,10 @@
-import {requestSignup} from "./signup";
-import {requestSignin} from "./signin";
+import {requestUserData} from "./user";
+import {createTrip, getUserTrips} from "./trip";
+import {uploadImage} from "./image";
 
 export {
-    requestSignin,
-    requestSignup
+    requestUserData,
+    createTrip,
+    getUserTrips,
+    uploadImage
 }

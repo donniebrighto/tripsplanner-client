@@ -1,25 +1,21 @@
-import {signup} from "./signup";
-import {signin} from "./signin";
+import {fetchCurrentUser} from "./fetchCurrentUser";
 
-const fillField = (label, value) => ({
-    type: 'FILL_FIELD',
-    label,
-    value
+const requestUserData = () => ({
+    type: 'REQUEST_USER_DATA'
 });
 
-const requestUserLogin = () => ({
-    type: 'REQUEST_LOGIN'
+const retrieveUserData = (currentUser) => ({
+    type: 'RETRIEVE_USER_DATA',
+    currentUser
 });
 
-const retrieveUserLoginResponse = (userId) => ({
-    type: 'RETRIEVE_USER_ID',
-    userId
+const logout = () => ({
+    type: 'LOG_OUT'
 });
 
 export const AUTHENTICATION = {
-    fillField,
-    requestUserLogin,
-    retrieveUserLoginResponse,
-    signin,
-    signup
+    requestUserData,
+    retrieveUserData,
+    fetchCurrentUser,
+    logout
 };

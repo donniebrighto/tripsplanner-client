@@ -6,17 +6,17 @@ import {connect} from 'react-redux';
 import AuthenticatedUserMenu from "./AuthenticatedUserMenu";
 import NotAuthenticatedUserMenu from "./NotAuthenticatedUserMenu";
 
-const MainMenu = () => {
+const MainMenu = (props) => {
     let navigation;
 
-    if (localStorage.getItem("userId")) {
+    if (props.userAuthenticated && localStorage.getItem("accessToken")) {
         navigation = <AuthenticatedUserMenu/>
     } else {
         navigation = <NotAuthenticatedUserMenu/>
     }
 
     return (
-        <Menu pointing secondary>
+        <Menu pointing secondary stackable>
             <Container>
                 <Menu.Item as={NavLink} to="/" exact header>
                     <Icon name="travel"/>
@@ -27,7 +27,5 @@ const MainMenu = () => {
         </Menu>
     );
 };
-
-const mapStateToProps = (state) => ({...state.authentication});
-
+const mapStateToProps = ({authentication}) => ({...authentication});
 export default connect(mapStateToProps)(MainMenu);

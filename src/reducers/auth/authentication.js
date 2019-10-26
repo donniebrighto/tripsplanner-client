@@ -1,41 +1,26 @@
-import LABELS from './labels';
-
 const initialState = {
-    [LABELS.USERNAME]: '',
-    [LABELS.PASSWORD]: '',
-    [LABELS.FIRST_NAME]: '',
-    [LABELS.LAST_NAME]: '',
-    userId: null,
     isLoading: false,
     userAuthenticated: false
 };
 
-function fillField(action, state) {
-    let {label, value} = action;
-    let newState = {...state};
-    newState[label] = value;
-    return newState;
-}
-
 function authentication(state = initialState, action) {
     switch (action.type) {
-        case 'FILL_FIELD':
-            return fillField(action, state);
-        case 'REQUEST_REGISTRATION':
+        case "REQUEST_USER_DATA":
             return {
                 ...state,
-                isLoading: true
+                isLoading: true,
+                userAuthenticated: true
             };
-        case 'REQUEST_LOGIN':
-            return {
-                ...state,
-                isLoading: true
-            };
-        case 'RETRIEVE_USER_ID':
+        case "RETRIEVE_USER_DATA":
             return {
                 ...state,
                 isLoading: false,
-                userId: action.userId
+                currentUser: action.currentUser
+            };
+        case "LOG_OUT":
+            return {
+                ...state,
+                userAuthenticated: false
             };
         default:
             return state;

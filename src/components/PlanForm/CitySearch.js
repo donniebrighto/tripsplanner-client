@@ -6,13 +6,15 @@ import {Dropdown} from "semantic-ui-react";
 const CitySearch = (props) => {
     const {onChange, minCharacters, value, suggestions, isLoading} = props;
 
+    console.log("on change", onChange);
+
     return (
         <Dropdown
             placeholder='Wyszukaj miasto'
             fluid
             search
             selection
-            value={!!value ? value : undefined}
+            value={value}
             options={suggestions}
             loading={isLoading}
             minCharacters={minCharacters}

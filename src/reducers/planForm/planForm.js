@@ -1,57 +1,13 @@
 const initialState = {
     name: '',
-    city: '',
-    locationId: '',
+    destination: {
+        name: ''
+    },
     startDate: {},
     endDate: {},
-    chosen_tags: [],
-    available_tags: [
-        {
-            text: "chillout",
-            key: "chillout",
-            value: "chillout",
-        },
-        {
-            text: "zwiedzanie",
-            key: "zwiedzanie",
-            value: "zwiedzanie",
-        },
-        {
-            text: "życie nocne",
-            key: "życie nocne",
-            value: "życie nocne",
-        },
-        {
-            text: "romantyczny wyjazd we dwoje",
-            key: "romantyczny wyjazd we dwoje",
-            value: "romantyczny wyjazd we dwoje",
-        },
-        {
-            text: "trip ze znajomymi",
-            key: "trip ze znajomymi",
-            value: "trip ze znajomymi",
-        },
-        {
-            text: "rodzinne wakacje",
-            key: "rodzinne wakacje",
-            value: "rodzinne wakacje",
-        },
-        {
-            text: "miasto",
-            key: "miasto",
-            value: "miasto",
-        },
-        {
-            text: "plażowanie",
-            key: "plażowanie",
-            value: "plażowanie",
-        },
-        {
-            text: "aktywny wypoczynek",
-            key: "aktywny wypoczynek",
-            value: "aktywny wypoczynek",
-        }
-    ]
+    tags: [],
+    owner: '',
+    imageId: ''
 };
 
 function fillField(action, state) {
@@ -61,10 +17,13 @@ function fillField(action, state) {
     return newState;
 }
 
-function fillCityStoreLocation(state, action) {
+function fillCityStoreLocation(state, {label, locationId, iso2flag}) {
     let newState = {...state};
-    newState['city'] = action.city;
-    newState['locationId'] = action.locationId;
+    newState['destination'] = {
+        label,
+        locationId,
+        iso2flag
+    };
     return newState;
 }
 
@@ -73,9 +32,14 @@ function planForm(state = initialState, action) {
         case 'FILL_FIELD':
             return fillField(action, state);
         case 'FILL_CITY_STORE_LOCATION':
-            return fillCityStoreLocation(state, action);
+            return fillCityStoreLocation(state, action.destination);
         case 'SUBMIT_FORM':
             return;
+        case 'UPLOAD_IMAGE':
+            return {
+                ...state,
+                imageId: action.imageId
+            };
         default:
             return state;
     }

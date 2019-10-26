@@ -2,7 +2,6 @@ import React from 'react';
 import {Container, Divider, Grid, Header, Image, List, Segment} from "semantic-ui-react";
 
 const styles = {
-    margin: '5em 0em 0em',
     padding: '5em 0em'
 };
 

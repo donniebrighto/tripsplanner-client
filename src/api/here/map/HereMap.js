@@ -9,7 +9,7 @@ class HereMap extends Component {
 
     render() {
         return (
-            <div id="mapContainer" style={{width: '600px', height: '600px'}}>
+            <div id="mapContainer" style={{width: '100%', height: '100%'}}>
 
             </div>
         )

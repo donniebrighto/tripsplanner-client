@@ -26,13 +26,13 @@ export function fetchCitiesSuggestion(input) {
             return EMPTY_INPUT_RESULT;
         })
         .then(result => {
-            return result.map((value) => {
+            return result.map((value, key) => {
                 const {city, country} = value.address;
                 const text = city + ', ' + country;
                 return {
                     key: value.locationId,
                     text,
-                    value: text,
+                    value: key,
                     flag: iso3_to_iso2_map[value.countryCode]
                 }
             });

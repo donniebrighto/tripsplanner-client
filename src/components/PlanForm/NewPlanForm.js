@@ -8,13 +8,17 @@ import SectionHeader from "../SectionHeader";
 
 const LABELS = {
     NAME: "name",
-    CITY: "city",
     START_DATE: "startDate",
     END_DATE: "endDate",
-    TAGS: "chosen_tags"
+    TAGS: "tags"
 };
 
 const NewPlanForm = (props) => {
+
+    if (!props.isLoading && !props.available_tags.length) {
+        props.fetchTags();
+    }
+
     return (
         <Container>
             <SectionHeader
@@ -22,7 +26,7 @@ const NewPlanForm = (props) => {
                 subtitle="Stwórz swój plan razem ze znajomymi"
                 iconName="edit outline"
             />
-            <Form>
+            <Form onSubmit={props.submit(props)}>
                 <Form.Field>
                     <label>Nazwa Planu</label>
                     <Form.Input
@@ -35,7 +39,7 @@ const NewPlanForm = (props) => {
                 <Form.Field>
                     <label>Miasto</label>
                     <CitySearch
-                        value={props.city}
+                        value={props.destination.name}
                         minCharacters={3}
                         onChange={props.handleFillingCity}
                     />
@@ -61,16 +65,24 @@ const NewPlanForm = (props) => {
                     <Form.Dropdown
                         options={props.available_tags}
                         placeholder='Dodaj tagi'
+                        loading={props.isLoading}
                         search
                         selection
                         fluid
                         multiple
-                        value={props.chosen_tags}
                         onChange={props.handleFillingData(LABELS.TAGS)}
                     />
                 </Form.Field>
+                <Form.Field>
+                    <label>Zdjęcie wycieczki</label>
+                    <Form.Input
+                        type="file"
+                        accept="image/*"
+                        onChange={props.handleImageUpload}
+                    />
+                </Form.Field>
                 <Button icon labelPosition='right' floated='right' color='teal'>
-                    Next
+                    Stwórz
                     <Icon name='right arrow' />
                 </Button>
             </Form>
@@ -81,22 +93,32 @@ const NewPlanForm = (props) => {
 const mapStateToProps = (state) => {
     const {
         name,
-        city,
-        locationId,
+        destination,
         startDate,
         endDate,
-        chosen_tags,
-        available_tags
+        tags,
+        imageId
     } = state.planForm;
+
+    const {
+        isLoading,
+        available_tags
+    } = state.tagSuggestion;
+
+    const {
+        currentUser
+    } = state.authentication;
 
     return {
         name,
-        city,
-        locationId,
+        destination,
         startDate,
         endDate,
-        chosen_tags,
-        available_tags
+        chosen_tags: tags,
+        available_tags,
+        isLoading,
+        currentUser,
+        imageId
     };
 };
 
@@ -107,8 +129,35 @@ const mapDispatchToProps = (dispatch) => {
                 dispatch(PLAN_FORM.fillField(label, value));
             }
         },
-        handleFillingCity: (event, {value, key}) => {
-            dispatch(PLAN_FORM.storeCityData(value, key));
+        handleFillingCity: (event, {value, options}) => {
+            const data = options[value];
+            dispatch(PLAN_FORM.storeCityData(data.text, data.key, data.flag));
+        },
+        handleImageUpload: event => {
+            const image = event.target.files[0];
+            dispatch(PLAN_FORM.upload(image));
+        },
+        fetchTags: () => dispatch(PLAN_FORM.tagSuggestions()),
+        submit: (props) => () => {
+            const {
+                name,
+                destination,
+                startDate,
+                endDate,
+                chosen_tags,
+                imageId
+            } = props;
+
+            const trip = {
+                name,
+                destination,
+                startDate,
+                endDate,
+                tags: chosen_tags,
+                imageId
+            };
+
+            dispatch(PLAN_FORM.submit(trip))
         }
     }
 };

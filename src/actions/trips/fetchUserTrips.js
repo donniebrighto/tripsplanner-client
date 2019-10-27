@@ -6,10 +6,6 @@ export function fetchUserTrips() {
         dispatch(TRIPS.requestUserTrips());
         getUserTrips()
             .then(response => response.json())
-            .then(data => {
-                console.log("trips", data);
-                return data;
-            })
-            .then(trips => dispatch(TRIPS.retrieveUserTrips(trips)));
+            .then(data => dispatch(TRIPS.retrieveUserTrips(data)))
     }
 }

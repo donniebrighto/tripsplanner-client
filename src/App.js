@@ -10,7 +10,7 @@ import HereMap from "./api/here/map/HereMap";
 import OAuth2RedirectHandler from "./components/Auth/OAuth2RedirectHandler";
 import {AUTHENTICATION} from "./actions";
 import {connect} from "react-redux";
-import TripDetails from "./components/Trip/TripDetails";
+import TripDetails from "./components/Trip/Details/TripDetails";
 
 const PrivateRoute = ({component: Component, authenticated, ...rest}) => (
     <Route

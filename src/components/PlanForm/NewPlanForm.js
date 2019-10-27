@@ -20,7 +20,7 @@ const NewPlanForm = (props) => {
     }
 
     return (
-        <Container>
+        <Container style={{paddingBottom: '15px'}}>
             <SectionHeader
                 title="Kreator Planu"
                 subtitle="Stwórz swój plan razem ze znajomymi"
@@ -81,7 +81,7 @@ const NewPlanForm = (props) => {
                         onChange={props.handleImageUpload}
                     />
                 </Form.Field>
-                <Button icon labelPosition='right' floated='right' color='teal'>
+                <Button icon labelPosition='right' color='teal'>
                     Stwórz
                     <Icon name='right arrow' />
                 </Button>

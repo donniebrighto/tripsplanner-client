@@ -14,7 +14,6 @@ const CitySearch = (props) => {
             fluid
             search
             selection
-            value={value}
             options={suggestions}
             loading={isLoading}
             minCharacters={minCharacters}

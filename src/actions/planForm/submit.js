@@ -6,7 +6,7 @@ export function submit(trip) {
         createTrip(trip)
             .then(response => response.json())
             .then(data => {
-                dispatch(push(`/trip/${data.id}`));
+                dispatch(push(`/trips/${data.id}`));
             }); // TODO - loading (?)
     }
 }

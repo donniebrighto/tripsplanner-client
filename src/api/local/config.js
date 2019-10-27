@@ -8,14 +8,16 @@ export const endpoints = {
     user: {
         base: `${base_url}/api/user`,
         me: `${base_url}/user/me`,
+        email: `${base_url}/user/email`,
     },
     trip: {
         create: `${base_url}/trips/create`,
         all: `${base_url}/trips/all`,
+        base: `${base_url}/trips/`,
         past: `${base_url}/trips/past`,
         future: `${base_url}/trips/future`,
         active: `${base_url}/trips/active`,
-        base: `${base_url}/api/trips`,
+        addMember: (id) => `${base_url}/trips/${id}/member`
     },
     tag: {
         base: `${base_url}/api/tags`

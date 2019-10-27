@@ -6,6 +6,9 @@ import tagSuggestion from './planForm/tagSuggestion'
 import planForm from './planForm/planForm';
 import authentication from "./auth/authentication";
 import exploreTrips from "./trips/exploreTrips";
+import tripDetails from "./trips/tripDetails";
+import usersSuggestion from "./trips/usersSuggestion";
+import addMember from "./trips/addMember";
 
 const createRootReducer = (history) => combineReducers({
     router: connectRouter(history),
@@ -13,7 +16,10 @@ const createRootReducer = (history) => combineReducers({
     tagSuggestion,
     planForm,
     authentication,
-    exploreTrips
+    exploreTrips,
+    tripDetails,
+    usersSuggestion,
+    addMember
 });
 
 export default createRootReducer

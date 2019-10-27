@@ -9,3 +9,13 @@ export function requestUserData() {
         }
     });
 }
+
+export function getUsersByEmailSubstring(queryString) {
+    return fetch(`${endpoints.user.email}?query=${queryString}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem("accessToken")}`
+        }
+    })
+}

@@ -5,7 +5,7 @@ import MainNavigation from './MainNavigation';
 
 const MainMenu = () => {
   return (
-    <Menu stackable>
+    <Menu secondary>
       <Container>
         <Menu.Item as={Link} to="/" exact header>
           <Icon name="travel" />

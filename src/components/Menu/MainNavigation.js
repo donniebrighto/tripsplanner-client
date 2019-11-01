@@ -6,40 +6,17 @@ import { Dimmer, Dropdown, Icon, Loader, Menu } from 'semantic-ui-react';
 import { AUTHENTICATION } from '../../actions';
 import { endpoints } from '../../api/local/config';
 
-const MainNavigation = props => {
+const getAuthSpecificElement = props => {
   if (!localStorage.getItem('accessToken')) {
     return (
       <Menu.Menu position="right">
-        <Menu.Item as={NavLink} to="/create">
-          <Icon name="add" />
-          Stwórz
+        <Menu.Item as="a" href={endpoints.auth.oauth2}>
+          <Icon name="google plus" color="red" />
+          Dołącz
         </Menu.Item>
-        <Menu.Item as={NavLink} to="/trips">
-          <Icon name="sort amount down" />
-          Przegladaj
-        </Menu.Item>
-        <Menu.Item as="a">
-          <Icon name="time" />
-          Aktywne
-        </Menu.Item>
-        <Dropdown
-          loading={props.isLoading}
-          text="Profil"
-          icon="user"
-          item
-          simple
-        >
-          <Dropdown.Menu>
-            <Dropdown.Item onClick={props.logout}>
-              <Icon name="log out" />
-              Wyloguj
-            </Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
       </Menu.Menu>
     );
   }
-
   if (!props.currentUser) {
     props.fetchCurrentUser();
     return (
@@ -50,14 +27,44 @@ const MainNavigation = props => {
   }
 
   return (
-    <Menu.Menu position="right">
-      <Menu.Item as="a" href={endpoints.auth.oauth2}>
-        <Icon name="google plus" color="red" />
-        Dołącz
-      </Menu.Item>
-    </Menu.Menu>
+    <Dropdown
+      loading={props.isLoading}
+      trigger={
+        <span>
+          <Icon name="user" />
+          Profil
+        </span>
+      }
+      item
+      simple
+    >
+      <Dropdown.Menu>
+        <Dropdown.Item onClick={props.logout}>
+          <Icon name="log out" />
+          Wyloguj
+        </Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown>
   );
 };
+
+const MainNavigation = props => (
+  <Menu.Menu position="right">
+    <Menu.Item as={NavLink} to="/flights">
+      <Icon name="plane" />
+      Loty
+    </Menu.Item>
+    <Menu.Item as={NavLink} to="/accommodations">
+      <Icon name="hotel" />
+      Hotele
+    </Menu.Item>
+    <Menu.Item as="a" to="/trips">
+      <Icon name="travel" />
+      Podróże
+    </Menu.Item>
+    {getAuthSpecificElement(props)}
+  </Menu.Menu>
+);
 
 const mapStateToProps = ({ authentication }) => ({ ...authentication });
 const mapDispatchToProps = {

@@ -16,7 +16,7 @@ const MainMenu = (props) => {
     }
 
     return (
-        <Menu pointing secondary stackable>
+        <Menu stackable>
             <Container>
                 <Menu.Item as={NavLink} to="/" exact header>
                     <Icon name="travel"/>

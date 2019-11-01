@@ -6,17 +6,22 @@ const platform = new window.H.service.Platform({
 
 const maptypes = platform.createDefaultLayers();
 
-const hereMap = (elementId) => {
+const hereMap = (elementId, lng, lat) => {
     const map = new window.H.Map(
         document.getElementById(elementId),
         maptypes.vector.normal.map,
         {
             zoom: 10,
-            center: {lng: 13.4, lat: 52.51}
+            center: {
+                lng,
+                lat
+            }
         });
 
     const mapEvents = new window.H.mapevents.MapEvents(map);
     new window.H.mapevents.Behavior(mapEvents);
+
+    map.addEventListener("pointerup", ) // TODO set center on pointer up
 };
 
 export default hereMap;

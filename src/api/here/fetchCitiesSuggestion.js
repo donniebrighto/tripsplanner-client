@@ -1,14 +1,10 @@
-import {APP_CODE, APP_ID} from "./config";
+import {endpoints} from "./config";
 import iso3_to_iso2_map from "../../utils/countryCodeMap";
 
 const EMPTY_INPUT_RESULT = [];
 
 function createResourceURLWithParam(param) {
-    return `http://autocomplete.geocoder.api.here.com/6.2/suggest.json` +
-        `?app_id=${APP_ID}` +
-        `&app_code=${APP_CODE}` +
-        `&query=${param}` +
-        `&language=pl`;
+    return `${endpoints.autocomplete}&query=${param}&language=pl`;
 }
 
 export function fetchCitiesSuggestion(input) {

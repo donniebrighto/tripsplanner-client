@@ -4,17 +4,15 @@ import {Card, Container, Dimmer, Grid, GridColumn, GridRow, Loader} from 'semant
 import {TRIPS} from '../../../actions';
 import {connect} from "react-redux";
 import {useParams} from 'react-router-dom';
-import HereMap from "../../../api/here/map/HereMap";
 import TaskBar from "./TaskBar/TaskBar";
+import MapWrapper from "./MapWrapper";
 
 const TripDetails = (props) => {
     const {id} = useParams();
 
-    if (!props.isLoading && !props.details) {
-        props.fetchTripDetails(id);
-    }
+    if (!props.details) {
+        if (!props.isLoading) props.fetchTripDetails(id);
 
-    if (props.isLoading) {
         return (
             <Dimmer active inverted>
                 <Loader inverted>Loading</Loader>
@@ -39,7 +37,7 @@ const TripDetails = (props) => {
                         </Card.Group>
                     </GridColumn>
                     <GridColumn width={10} style={{minHeight: '700px'}}>
-                        <HereMap/>
+                        <MapWrapper locationId={props.details.destination.locationId}/>
                     </GridColumn>
                 </GridRow>
             </Grid>

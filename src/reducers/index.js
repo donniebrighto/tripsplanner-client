@@ -9,6 +9,7 @@ import exploreTrips from "./trips/exploreTrips";
 import tripDetails from "./trips/tripDetails";
 import usersSuggestion from "./trips/usersSuggestion";
 import addMember from "./trips/addMember";
+import tripDestination from "./map/tripDestination";
 
 const createRootReducer = (history) => combineReducers({
     router: connectRouter(history),
@@ -19,7 +20,8 @@ const createRootReducer = (history) => combineReducers({
     exploreTrips,
     tripDetails,
     usersSuggestion,
-    addMember
+    addMember,
+    tripDestination
 });
 
 export default createRootReducer

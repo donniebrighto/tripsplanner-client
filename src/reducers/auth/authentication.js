@@ -9,7 +9,7 @@ function authentication(state = initialState, action) {
       return {
         ...state,
         isLoading: true,
-        userAuthenticated: true,
+        userAuthenticated: localStorage.getItem('accessToken'),
       };
     case 'RETRIEVE_USER_DATA':
       return {

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Menu from './components/Menu/Menu';
+import Menu from './components/Menu/MainMenu';
 import { Routes } from './Routes';
 
 const App = () => (

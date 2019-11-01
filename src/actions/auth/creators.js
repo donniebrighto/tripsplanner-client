@@ -1,21 +1,21 @@
-import {fetchCurrentUser} from "./fetchCurrentUser";
+import { fetchCurrentUser } from './fetchCurrentUser';
 
 const requestUserData = () => ({
-    type: 'REQUEST_USER_DATA'
+  type: 'REQUEST_USER_DATA',
 });
 
-const retrieveUserData = (currentUser) => ({
-    type: 'RETRIEVE_USER_DATA',
-    currentUser
+const retrieveUserData = currentUser => ({
+  type: 'RETRIEVE_USER_DATA',
+  currentUser,
 });
 
 const logout = () => ({
-    type: 'LOG_OUT'
+  type: 'LOG_OUT',
 });
 
 export const AUTHENTICATION = {
-    requestUserData,
-    retrieveUserData,
-    fetchCurrentUser,
-    logout
+  requestUserData,
+  retrieveUserData,
+  fetchCurrentUser,
+  logout,
 };

@@ -1,5 +1,3 @@
-import {fetchCitiesSuggestion} from "./fetchCitiesSuggestion";
+import { fetchCitiesSuggestion } from './fetchCitiesSuggestion';
 
-export {
-    fetchCitiesSuggestion
-}
+export { fetchCitiesSuggestion };

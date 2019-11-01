@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
-import Footer from './components/Footer';
 import Menu from './components/Menu/Menu';
 import ExploreTrips from './components/Trip/ExploreTrips';
 import Home from './components/Home';
@@ -59,8 +58,6 @@ class SemanticApp extends Component {
           <Route path="/oauth2/redirect" component={OAuth2RedirectHandler} />
           <Route path="/trips/:id" component={TripDetails} />
         </Switch>
-
-        <Footer />
       </div>
     );
   }

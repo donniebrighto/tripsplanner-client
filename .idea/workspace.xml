@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ee6716e3-d61b-4203-b4bd-be841f5f30d2" name="Default Changelist" comment="Trip form, explore and draft of Trip Details View added">
-      <change afterPath="$PROJECT_DIR$/.prettierrc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Footer.js" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,6 +31,12 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
   </component>
   <component name="ProjectId" id="1T1GPxHZpmd16L2dFljQLWFoOkV" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -141,7 +147,7 @@
       <workItem from="1572077104863" duration="16172000" />
       <workItem from="1572166492492" duration="20710000" />
       <workItem from="1572474042968" duration="1773000" />
-      <workItem from="1572620172234" duration="1160000" />
+      <workItem from="1572620172234" duration="1550000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1569534493959</created>

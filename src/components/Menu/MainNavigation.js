@@ -9,7 +9,7 @@ import { endpoints } from '../../api/local/config';
 const AuthSpecificElement = props => {
   useEffect(() => {
     if (localStorage.getItem('accessToken')) {
-      if (!props.currentUser) {
+      if (!props.currentUser && !props.isLoading) {
         props.fetchCurrentUser();
       }
     }

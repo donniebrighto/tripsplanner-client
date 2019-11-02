@@ -6,7 +6,6 @@ export const endpoints = {
     oauth2: `${base_url}/oauth2/authorize/google?redirect_uri=${oauth2_redirect_uri}`,
   },
   user: {
-    base: `${base_url}/api/user`,
     me: `${base_url}/user/me`,
     email: `${base_url}/user/email`,
   },
@@ -20,10 +19,9 @@ export const endpoints = {
     addMember: id => `${base_url}/trips/${id}/member`,
   },
   tag: {
-    base: `${base_url}/api/tags`,
+    findAll: `${base_url}/trips/tags`,
   },
   image: {
     upload: `${base_url}/image/upload`,
-    base: `${base_url}/api/image`,
   },
 };

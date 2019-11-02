@@ -5,7 +5,7 @@ import MainNavigation from './MainNavigation';
 
 const MainMenu = () => {
   return (
-    <Menu secondary>
+    <Menu secondary style={{ marginBottom: '0' }}>
       <Container>
         <Menu.Item as={Link} to="/" exact header>
           <Icon name="travel" />

@@ -7,8 +7,8 @@ export function tagSuggestions() {
     fetchTags()
       .then(response => response.json())
       .then(data => {
-        const { tags } = data._embedded;
-        return tags.map((tag, key) => ({
+        console.log(data);
+        return data.map((tag, key) => ({
           key,
           text: tag.value,
           value: tag.id,

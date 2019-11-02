@@ -4,7 +4,6 @@ import { Redirect, Route, Switch } from 'react-router';
 import Home from './components/Home';
 import NewPlanForm from './components/Trip/Create/CreateTripForm';
 import OAuth2RedirectHandler from './components/Auth/OAuth2RedirectHandler';
-import TripDetails from './components/Trip/Planning/TripDetails';
 import { TripsView } from './components/Trip/TripsView';
 
 const isUserAuthenticated = () => !!localStorage.getItem('accessToken');
@@ -40,20 +39,19 @@ export const Routes = props => {
     ));
 
     return (
-      <Switch>
+      <React.Fragment>
         {publicRoutes}
         {privateRoutes}
-      </Switch>
+      </React.Fragment>
     );
   }
 
   return (
     <Switch>
       <Route exact path="/" component={Home} />
-      <PrivateRoute exact path="/trips" component={TripsView} />
+      <Route path="/trips" component={TripsView} />
       <PrivateRoute path="/create" component={NewPlanForm} />
       <Route path="/oauth2/redirect" component={OAuth2RedirectHandler} />
-      <Route path="/trips/:id" component={TripDetails} />
     </Switch>
   );
 };

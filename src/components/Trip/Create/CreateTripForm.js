@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Button, Container, Form, Icon } from 'semantic-ui-react';
 
-import { PLAN_FORM } from '../../actions';
+import { PLAN_FORM } from '../../../actions';
 import CitySearch from './CitySearch';
-import SectionHeader from '../SectionHeader';
+import SectionHeader from '../../SectionHeader';
 
 const LABELS = {
   NAME: 'name',
@@ -13,7 +13,7 @@ const LABELS = {
   TAGS: 'tags',
 };
 
-const NewPlanForm = props => {
+const CreateTripForm = props => {
   if (!props.isLoading && !props.available_tags.length) {
     props.fetchTags();
   }
@@ -159,4 +159,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(NewPlanForm);
+)(CreateTripForm);

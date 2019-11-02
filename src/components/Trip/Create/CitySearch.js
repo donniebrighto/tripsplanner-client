@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { PLAN_FORM } from '../../actions';
+import { PLAN_FORM } from '../../../actions';
 import { Dropdown } from 'semantic-ui-react';
 
 const CitySearch = props => {
-  const { onChange, minCharacters, value, suggestions, isLoading } = props;
+  const { onChange, minCharacters, suggestions, isLoading } = props;
 
   console.log('on change', onChange);
 

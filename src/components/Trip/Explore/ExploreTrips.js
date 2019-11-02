@@ -7,9 +7,9 @@ import {
   Loader,
   Segment,
 } from 'semantic-ui-react';
-import SectionHeader from '../SectionHeader';
+import SectionHeader from '../../SectionHeader';
 
-import { AUTHENTICATION, TRIPS } from '../../actions';
+import { AUTHENTICATION, TRIPS } from '../../../actions';
 import { connect } from 'react-redux';
 import TripCard from './TripCard';
 

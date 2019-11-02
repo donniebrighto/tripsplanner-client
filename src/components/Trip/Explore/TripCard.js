@@ -30,10 +30,8 @@ const TripCard = props => {
       <Card.Content>
         <Card.Header>{props.name}</Card.Header>
         <Card.Meta>
-          <Icon name="calendar alternate outline" />
-          <span>
-            {props.startDate} - {props.endDate}
-          </span>
+          <Icon name="clock outline" />
+          <span>{props.durationInDays} dni</span>
         </Card.Meta>
         <Card.Description>
           <Flag name={props.destination.iso2flag} /> {props.destination.label}

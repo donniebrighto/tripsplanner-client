@@ -1,15 +1,9 @@
+import axios from 'axios';
+
 import { fetchUserTrips } from './fetchUserTrips';
 import { fetchTripDetails } from './fetchTripDetails';
 import { addMemberToTrip, suggestMembersToAdd } from './addMember';
-
-const requestUserTrips = () => ({
-  type: 'REQUEST_TRIPS',
-});
-
-const retrieveUserTrips = trips => ({
-  type: 'RETRIEVE_TRIPS',
-  trips,
-});
+import { endpoints, requestConfig } from '../../api/local/config';
 
 const requestTripDetails = () => ({
   type: 'REQUEST_TRIP_DETAILS',
@@ -42,10 +36,28 @@ const fillMemberToAdd = member => ({
   member,
 });
 
+const requestTrips = () => ({
+  type: 'REQUEST_TRIPS',
+});
+
+const retrieveTrips = trips => ({
+  type: 'RETRIEVE_TRIPS',
+  trips,
+});
+
+const fetchTrips = () => async dispatch => {
+  dispatch(requestTrips);
+  try {
+    const response = await axios.get(endpoints.trip.all, requestConfig());
+    dispatch(retrieveTrips(response.data));
+  } catch (err) {
+    console.log(err);
+    // TODO - Alarm - dodam wszędzie przy okazji alarmów z użytkownikami
+  }
+};
+
 export const TRIPS = {
-  requestUserTrips,
-  retrieveUserTrips,
-  fetchUserTrips,
+  fetchTrips,
   requestTripDetails,
   retrieveTripDetails,
   fetchTripDetails,

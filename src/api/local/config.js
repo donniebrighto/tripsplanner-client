@@ -1,6 +1,12 @@
 const base_url = 'http://localhost:8080';
 const oauth2_redirect_uri = 'http://localhost:3000/oauth2/redirect';
 
+export const requestConfig = () => ({
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+  },
+});
+
 export const endpoints = {
   auth: {
     oauth2: `${base_url}/oauth2/authorize/google?redirect_uri=${oauth2_redirect_uri}`,

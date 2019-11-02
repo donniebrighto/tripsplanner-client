@@ -1,4 +1,5 @@
 import { fetchCurrentUser } from './fetchCurrentUser';
+import { push } from 'connected-react-router';
 
 const requestUserData = () => ({
   type: 'REQUEST_USER_DATA',
@@ -9,9 +10,13 @@ const retrieveUserData = currentUser => ({
   currentUser,
 });
 
-const logout = () => ({
-  type: 'LOG_OUT',
-});
+const logout = () => {
+  return dispatch => {
+    localStorage.removeItem('accessToken');
+    dispatch({ type: 'LOG_OUT' });
+    dispatch(push('/'));
+  };
+};
 
 export const AUTHENTICATION = {
   requestUserData,

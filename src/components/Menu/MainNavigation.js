@@ -6,7 +6,7 @@ import { Dimmer, Dropdown, Icon, Loader, Menu } from 'semantic-ui-react';
 import { AUTHENTICATION } from '../../actions';
 import { endpoints } from '../../api/local/config';
 
-const getAuthSpecificElement = props => {
+const AuthSpecificElement = props => {
   if (!localStorage.getItem('accessToken')) {
     return (
       <Menu.Menu position="right">
@@ -47,6 +47,15 @@ const getAuthSpecificElement = props => {
     </Dropdown>
   );
 };
+const mapStateToProps = ({ authentication }) => ({ ...authentication });
+const mapDispatchToProps = {
+  fetchCurrentUser: AUTHENTICATION.fetchCurrentUser,
+  logout: AUTHENTICATION.logout,
+};
+const ConnectedAuthSpecificElement = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AuthSpecificElement);
 
 const MainNavigation = props => (
   <Menu.Menu position="right">
@@ -62,15 +71,8 @@ const MainNavigation = props => (
       <Icon name="travel" />
       Podróże
     </Menu.Item>
-    {getAuthSpecificElement(props)}
+    <ConnectedAuthSpecificElement {...props} />
   </Menu.Menu>
 );
 
-const mapStateToProps = ({ authentication }) => ({ ...authentication });
-const mapDispatchToProps = {
-  fetchCurrentUser: AUTHENTICATION.fetchCurrentUser,
-};
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(MainNavigation);
+export default MainNavigation;

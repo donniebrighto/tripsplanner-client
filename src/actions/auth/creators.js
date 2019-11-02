@@ -5,9 +5,10 @@ const requestUserData = () => ({
   type: 'REQUEST_USER_DATA',
 });
 
-const retrieveUserData = currentUser => ({
+const retrieveUserData = ({ currentUser, futureTrips }) => ({
   type: 'RETRIEVE_USER_DATA',
   currentUser,
+  futureTrips,
 });
 
 const logout = () => {

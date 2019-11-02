@@ -15,6 +15,7 @@ function authentication(state = initialState, action) {
         ...state,
         isLoading: false,
         currentUser: action.currentUser,
+        futureTrips: action.futureTrips,
       };
     case 'LOG_OUT':
       return {

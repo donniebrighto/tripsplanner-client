@@ -25,7 +25,7 @@ const TripCard = props => {
   }
 
   return (
-    <Card link as={Link} to={`/trips/${props.id}`}>
+    <Card fluid link as={Link} to={`/trips/${props.id}`}>
       <Image src={imageUrl} />
       <Card.Content>
         <Card.Header>{props.name}</Card.Header>

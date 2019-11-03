@@ -13,6 +13,11 @@ function exploreTrips(state = initialState, action) {
         isLoading: false,
         trips: action.trips,
       };
+    case 'RESET_TRIPS':
+      return {
+        ...state,
+        trips: null,
+      };
     default:
       return state;
   }

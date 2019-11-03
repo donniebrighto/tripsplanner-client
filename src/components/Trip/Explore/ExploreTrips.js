@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import {
-  Card,
   Container,
   Dimmer,
+  Grid,
   Image,
   Loader,
   Segment,
 } from 'semantic-ui-react';
+import './masonry.css';
 import SectionHeader from '../../SectionHeader';
 
 import { TRIPS } from '../../../actions';
@@ -35,7 +36,13 @@ const ExploreTrips = props => {
     );
   }
 
-  const cards = trips.map((trip, key) => <TripCard key={key} {...trip} />);
+  const cards = trips.map((trip, key) => {
+    return (
+      <Grid.Column key={key}>
+        <TripCard key={key} {...trip} />
+      </Grid.Column>
+    );
+  });
 
   return (
     <Container>
@@ -44,9 +51,9 @@ const ExploreTrips = props => {
         subtitle="Przeglądaj plany stworzone przez innych użytkowników"
         iconName="briefcase"
       />
-      <Card.Group itemsPerRow={3} stackable>
+      <Grid columns={3} doubling stackable className="masonry">
         {cards}
-      </Card.Group>
+      </Grid>
     </Container>
   );
 };
@@ -57,6 +64,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   fetchTrips: TRIPS.fetchTrips,
+  resetTrips: TRIPS.resetTrips,
 };
 
 export default connect(

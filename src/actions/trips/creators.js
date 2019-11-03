@@ -56,8 +56,13 @@ const fetchTrips = () => async dispatch => {
   }
 };
 
+const resetTrips = () => ({
+  type: 'RESET_TRIPS',
+});
+
 export const TRIPS = {
   fetchTrips,
+  resetTrips,
   requestTripDetails,
   retrieveTripDetails,
   fetchTripDetails,

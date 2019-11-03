@@ -1,18 +1,12 @@
 import React from 'react';
-import {
-  Card,
-  Dimmer,
-  Grid,
-  GridColumn,
-  GridRow,
-  Loader,
-} from 'semantic-ui-react';
+import { Dimmer, Grid, GridColumn, GridRow, Loader } from 'semantic-ui-react';
 
 import { TRIPS } from '../../../actions';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import TaskBar from './TaskBar/TaskBar';
 import MapWrapper from './MapWrapper';
+import TripDetailsOperations from './TripDetailsOperations';
 
 const TripDetails = props => {
   const { id } = useParams();
@@ -33,14 +27,13 @@ const TripDetails = props => {
         <TaskBar {...props.details} />
       </GridRow>
       <GridRow style={{ paddingBottom: '0px' }}>
-        <GridColumn width={6}>
-          <Card.Group>
-            <Card fluid color="red" header="Option 1" />
-            <Card fluid color="orange" header="Option 2" />
-            <Card fluid color="yellow" header="Option 3" />
-          </Card.Group>
+        <GridColumn width={6} style={{ paddingRight: '0px' }}>
+          <TripDetailsOperations />
         </GridColumn>
-        <GridColumn width={10} style={{ minHeight: '500px' }}>
+        <GridColumn
+          width={10}
+          style={{ minHeight: '500px', paddingLeft: '0px' }}
+        >
           <MapWrapper locationId={props.details.destination.locationId} />
         </GridColumn>
       </GridRow>

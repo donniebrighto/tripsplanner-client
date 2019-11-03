@@ -2,7 +2,6 @@ import React from 'react';
 import { Redirect, Route, Switch } from 'react-router';
 
 import Home from './components/Home';
-import NewPlanForm from './components/Trip/Create/CreateTripForm';
 import OAuth2RedirectHandler from './components/Auth/OAuth2RedirectHandler';
 import { TripsView } from './components/Trip/TripsView';
 
@@ -50,7 +49,6 @@ export const Routes = props => {
     <Switch>
       <Route exact path="/" component={Home} />
       <Route path="/trips" component={TripsView} />
-      <PrivateRoute path="/create" component={NewPlanForm} />
       <Route path="/oauth2/redirect" component={OAuth2RedirectHandler} />
     </Switch>
   );

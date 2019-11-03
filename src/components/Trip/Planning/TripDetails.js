@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   Card,
-  Container,
   Dimmer,
   Grid,
   GridColumn,
@@ -29,27 +28,23 @@ const TripDetails = props => {
   }
 
   return (
-    <Container>
-      <Grid>
-        <GridRow>
-          <GridColumn width={16}>
-            <TaskBar {...props.details} />
-          </GridColumn>
-        </GridRow>
-        <GridRow>
-          <GridColumn width={6}>
-            <Card.Group>
-              <Card fluid color="red" header="Option 1" />
-              <Card fluid color="orange" header="Option 2" />
-              <Card fluid color="yellow" header="Option 3" />
-            </Card.Group>
-          </GridColumn>
-          <GridColumn width={10} style={{ minHeight: '700px' }}>
-            <MapWrapper locationId={props.details.destination.locationId} />
-          </GridColumn>
-        </GridRow>
-      </Grid>
-    </Container>
+    <Grid style={{ height: 'calc(100vh - 80px)' }}>
+      <GridRow style={{ height: '120px', paddingBottom: '0px' }}>
+        <TaskBar {...props.details} />
+      </GridRow>
+      <GridRow style={{ paddingBottom: '0px' }}>
+        <GridColumn width={6}>
+          <Card.Group>
+            <Card fluid color="red" header="Option 1" />
+            <Card fluid color="orange" header="Option 2" />
+            <Card fluid color="yellow" header="Option 3" />
+          </Card.Group>
+        </GridColumn>
+        <GridColumn width={10} style={{ minHeight: '500px' }}>
+          <MapWrapper locationId={props.details.destination.locationId} />
+        </GridColumn>
+      </GridRow>
+    </Grid>
   );
 };
 

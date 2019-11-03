@@ -14,18 +14,25 @@ const Member = props => (
   </List.Item>
 );
 
-const MembersList = props => (
-  <List style={{ height: '100%', overflowY: 'scroll' }}>
-    <List.Item>
-      <AddMemberModal />
-      Dodaj członka
-    </List.Item>
+const MembersList = props => {
+  let memberItems = props.members.map((member, key) => (
     <Member
-      src="https://react.semantic-ui.com/images/avatar/small/rachel.png"
-      name="Agata"
-      description="Ostatnio online: 10 min temu"
+      key={key}
+      src={member.imageUrl}
+      name={member.name}
+      description="Offline"
     />
-  </List>
-);
+  ));
+
+  return (
+    <List style={{ height: '100%', overflowY: 'scroll' }}>
+      <List.Item>
+        <AddMemberModal />
+        Dodaj członka
+      </List.Item>
+      {memberItems}
+    </List>
+  );
+};
 
 export default MembersList;

@@ -1,11 +1,11 @@
 import React from 'react';
-import { Dimmer, Grid, GridColumn, GridRow, Loader } from 'semantic-ui-react';
+import { Dimmer, GridColumn, Loader } from 'semantic-ui-react';
 import TripHeader from './TripHeader';
 import MembersList from './MembersList';
 import ControlPanel from './ControlPanel';
 
 const TaskBar = props => {
-  const { name, destination, startDate, endDate } = props;
+  const { name, destination, startDate, endDate, tags, members } = props;
 
   if (!destination) {
     return (
@@ -16,24 +16,23 @@ const TaskBar = props => {
   }
 
   return (
-    <Grid>
-      <GridRow style={{ paddingBottom: '0', height: '120px' }}>
-        <GridColumn style={{ paddingLeft: '30px', height: '100%' }} width={3}>
-          <TripHeader
-            name={name}
-            flag={destination.iso2flag}
-            destination={destination.label}
-            date={`${startDate} - ${endDate}`}
-          />
-        </GridColumn>
-        <GridColumn width={3} style={{ padding: '0', height: '100%' }}>
-          <MembersList />
-        </GridColumn>
-        <GridColumn width={10}>
-          <ControlPanel />
-        </GridColumn>
-      </GridRow>
-    </Grid>
+    <React.Fragment>
+      <GridColumn style={{ paddingLeft: '30px', height: '100%' }} width={3}>
+        <TripHeader
+          name={name}
+          flag={destination.iso2flag}
+          destination={destination.label}
+          date={`${startDate} - ${endDate}`}
+          tags={tags}
+        />
+      </GridColumn>
+      <GridColumn width={3} style={{ padding: '0', height: '100%' }}>
+        <MembersList members={members} />
+      </GridColumn>
+      <GridColumn width={10}>
+        <ControlPanel />
+      </GridColumn>
+    </React.Fragment>
   );
 };
 

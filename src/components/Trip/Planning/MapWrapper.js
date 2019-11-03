@@ -2,7 +2,7 @@ import React from 'react';
 import fetchCityLocation from '../../../actions/map/tripDestination';
 import { connect } from 'react-redux';
 import { Dimmer, Loader } from 'semantic-ui-react';
-import HereMap from '../../../api/here/map/HereMap';
+import HereMap from './HereMap';
 
 const MapWrapper = props => {
   const { isLoading, location, locationId } = props;

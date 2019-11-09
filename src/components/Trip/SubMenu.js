@@ -21,7 +21,7 @@ const SubMenu = props => {
 
   if (futureTrips && futureTrips.length) {
     tripsMenuOptions = futureTrips.map((trip, key) => (
-      <Menu.Item key={key} as={NavLink} to={`${url}/create/${trip.id}`}>
+      <Menu.Item key={key} as={NavLink} to={`${url}/details/${trip.id}`}>
         {trip.destination && <Flag name={trip.destination.iso2flag} />}
         {trip.name}
       </Menu.Item>

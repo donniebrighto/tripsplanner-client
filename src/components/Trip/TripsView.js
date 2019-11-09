@@ -9,7 +9,7 @@ import SubMenu from './SubMenu';
 const routes = path => ({
   private: [
     { path: `${path}/create`, component: NewPlanForm, exact: true },
-    { path: `${path}/create/:id`, component: TripDetails },
+    { path: `${path}/details/:id`, component: TripDetails },
   ],
   public: [{ path: `${path}/explore`, component: ExploreTrips }],
 });

@@ -5,7 +5,7 @@ import { Dimmer, Loader } from 'semantic-ui-react';
 import HereMap from './HereMap';
 
 const MapWrapper = props => {
-  const { isLoading, location, locationId } = props;
+  const { isLoading, location, locationId, places } = props;
   if (!location) {
     if (!isLoading) props.fetchCityLocation(locationId);
 
@@ -16,14 +16,12 @@ const MapWrapper = props => {
     );
   }
 
-  console.log(location);
-
-  return <HereMap lng={location.lng} lat={location.lat} />;
+  return <HereMap lng={location.lng} lat={location.lat} places={places} />;
 };
 
 const mapStateToProps = state => ({
   ...state.tripDestination,
-  details: state.tripDestination.details,
+  ...state.explorePlaces,
 });
 
 const mapDispatchToProps = {

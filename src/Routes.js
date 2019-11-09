@@ -30,13 +30,17 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 export const Routes = props => {
   const { routes } = props;
   if (routes) {
-    const publicRoutes = routes.public.map((options, key) => (
-      <Route {...options} key={key} />
-    ));
-    const privateRoutes = routes.private.map((options, key) => (
-      <PrivateRoute {...options} key={key} />
-    ));
-
+    let publicRoutes, privateRoutes;
+    if (routes.public) {
+      publicRoutes = routes.public.map((options, key) => (
+        <Route {...options} key={key} />
+      ));
+    }
+    if (routes.private) {
+      privateRoutes = routes.private.map((options, key) => (
+        <PrivateRoute {...options} key={key} />
+      ));
+    }
     return (
       <React.Fragment>
         {publicRoutes}

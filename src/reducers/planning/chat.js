@@ -13,13 +13,13 @@ function chat(state = initialState, action) {
     case 'REQUEST_TRIP_MESSAGES':
       return {
         ...state,
-        isLoading: true
+        isLoading: true,
       };
     case 'RETRIEVE_TRIP_MESSAGES':
       return {
         ...state,
         isLoading: false,
-        messages: action.messages
+        messages: action.messages,
       };
     case 'TYPE_MESSAGE':
       return {
@@ -32,8 +32,3 @@ function chat(state = initialState, action) {
 }
 
 export default chat;
-
-
-
-
-

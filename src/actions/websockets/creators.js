@@ -46,5 +46,5 @@ export const REALTIME = {
   addMessage,
   typeMessage,
   notify,
-  fetchTripMessages
+  fetchTripMessages,
 };

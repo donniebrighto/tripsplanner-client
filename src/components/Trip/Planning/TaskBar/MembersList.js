@@ -31,11 +31,7 @@ const Member = props => {
   );
 };
 
-
-
 const MembersList = props => {
-
-
   let memberItems = props.memberships
     .sort((m1, m2) => m2.online - m1.online)
     .map((member, key) => {
@@ -50,8 +46,6 @@ const MembersList = props => {
         />
       );
     });
-
-
 
   return (
     <List style={{ height: '100%', overflowY: 'scroll' }}>

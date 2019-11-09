@@ -66,10 +66,16 @@ const Chat = props => {
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
       }}
     >
-      <Comment.Group style={{ height: 'calc(100% - 40px)', padding: '5', overflowY: 'scroll' }}>
+      <Comment.Group
+        style={{
+          height: 'calc(100% - 40px)',
+          padding: '5',
+          overflowY: 'scroll',
+        }}
+      >
         {messagesViews}
       </Comment.Group>
       <Form>

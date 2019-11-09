@@ -18,7 +18,12 @@ const TripDetailsOperations = () => {
 
   return (
     <React.Fragment>
-      <div style={{ height: 'calc(100% - 40px)', padding: '5px' }}>
+      <div
+        style={{
+          height: 'calc(100% - 40px)',
+          padding: '5px',
+        }}
+      >
         <Routes routes={routes(path)} />
       </div>
       <Menu fluid widths={5} attached="bottom" tabular>

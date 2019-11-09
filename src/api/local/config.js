@@ -30,5 +30,5 @@ export const endpoints = {
   },
   image: {
     upload: `${base_url}/image/upload`,
-  }
+  },
 };

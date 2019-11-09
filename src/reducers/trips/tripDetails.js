@@ -4,7 +4,9 @@ const initialState = {
 
 function mergeMemberWithStatus(state, action) {
   if (state.details) {
-    const memberships = getMembershipsWithConnectionStatuses(state, [action.notification]);
+    const memberships = getMembershipsWithConnectionStatuses(state, [
+      action.notification,
+    ]);
     return {
       ...state,
       details: {
@@ -19,27 +21,34 @@ function mergeMemberWithStatus(state, action) {
   };
 }
 
-function getMembershipsWithConnectionStatuses({details}, notifications) {
+function getMembershipsWithConnectionStatuses({ details }, notifications) {
   const { memberships } = details;
   notifications.forEach(ntf => {
-    const {sender, connected, lastVisit} = ntf;
+    const { sender, connected, lastVisit } = ntf;
     const index = memberships.findIndex(
       membership => membership.user.email === sender.email
     );
-    memberships[index] = { ...memberships[index], online: connected, lastVisit };
+    memberships[index] = {
+      ...memberships[index],
+      online: connected,
+      lastVisit,
+    };
   });
   return memberships;
 }
 
 function mergeWithNotificationsIfNeeded(state, action) {
   if (state.notifications.length) {
-    const {details} = action;
-    details.memberships = getMembershipsWithConnectionStatuses(action, state.notifications);
+    const { details } = action;
+    details.memberships = getMembershipsWithConnectionStatuses(
+      action,
+      state.notifications
+    );
     return {
       ...state,
       isLoading: false,
-      details
-    }
+      details,
+    };
   }
   return {
     ...state,

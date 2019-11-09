@@ -10,6 +10,7 @@ import tripDetails from './trips/tripDetails';
 import usersSuggestion from './trips/usersSuggestion';
 import addMember from './trips/addMember';
 import tripDestination from './map/tripDestination';
+import explorePlaces from './map/explorePlaces';
 
 const createRootReducer = history =>
   combineReducers({
@@ -23,6 +24,7 @@ const createRootReducer = history =>
     usersSuggestion,
     addMember,
     tripDestination,
+    explorePlaces,
   });
 
 export default createRootReducer;

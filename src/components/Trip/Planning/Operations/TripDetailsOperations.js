@@ -2,14 +2,26 @@ import React from 'react';
 import { Icon, Menu } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 import { useRouteMatch } from 'react-router';
+import { Routes } from '../../../../Routes';
+import ExplorePlaces from './ExplorePlaces';
 
-const TripDetailsOperations = props => {
-  const { url } = useRouteMatch();
+const routes = path => ({
+  private: [{ path: `${path}/explore`, component: ExplorePlaces }],
+});
+
+const TripDetailsOperations = () => {
+  const { url, path } = useRouteMatch();
 
   return (
     <React.Fragment>
-      <div style={{ height: 'calc(100% - 42px)' }} />
-      <Menu fluid widths={4} attached="bottom" tabular>
+      <div style={{ height: 'calc(100% - 40px)', padding: '5px' }}>
+        <Routes routes={routes(path)} />
+      </div>
+      <Menu fluid widths={5} attached="bottom" tabular>
+        <Menu.Item as={NavLink} to={`${url}/explore`}>
+          <Icon name="search" />
+          Szukaj
+        </Menu.Item>
         <Menu.Item as={NavLink} to={`${url}/plan`}>
           <Icon name="numbered list" />
           Plan

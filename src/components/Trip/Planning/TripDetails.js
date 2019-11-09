@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import TaskBar from './TaskBar/TaskBar';
 import MapWrapper from './MapWrapper';
-import TripDetailsOperations from './TripDetailsOperations';
+import TripDetailsOperations from './Operations/TripDetailsOperations';
 
 const TripDetails = props => {
   const { id } = useParams();
@@ -26,7 +26,7 @@ const TripDetails = props => {
       <GridRow style={{ height: '120px', paddingBottom: '0px' }}>
         <TaskBar {...props.details} />
       </GridRow>
-      <GridRow style={{ paddingBottom: '0px' }}>
+      <GridRow style={{ paddingBottom: '0px', height: 'calc(100% - 120px)' }}>
         <GridColumn width={6} style={{ paddingRight: '0px' }}>
           <TripDetailsOperations />
         </GridColumn>

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@stomp/stompjs": "^5.4.2",
     "axios": "^0.19.0",
     "connected-react-router": "^6.5.2",
     "history": "^4.10.1",
@@ -16,7 +17,8 @@
     "redux-logger": "^3.0.6",
     "redux-promise-middleware": "^6.1.1",
     "redux-thunk": "^2.3.0",
-    "semantic-ui-react": "^0.88.1"
+    "semantic-ui-react": "^0.88.1",
+    "sockjs-client": "^1.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -48,5 +50,6 @@
     "hooks": {
       "pre-commit": "precise-commits"
     }
-  }
+  },
+  "proxy": "http://localhost:8080"
 }

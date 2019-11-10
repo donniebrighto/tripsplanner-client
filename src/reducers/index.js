@@ -11,6 +11,7 @@ import usersSuggestion from './trips/usersSuggestion';
 import addMember from './trips/addMember';
 import tripDestination from './map/tripDestination';
 import explorePlaces from './map/explorePlaces';
+import chat from './planning/chat';
 
 const createRootReducer = history =>
   combineReducers({
@@ -25,6 +26,7 @@ const createRootReducer = history =>
     addMember,
     tripDestination,
     explorePlaces,
+    chat,
   });
 
 export default createRootReducer;

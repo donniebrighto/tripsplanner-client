@@ -12,6 +12,7 @@ import addMember from './trips/addMember';
 import tripDestination from './map/tripDestination';
 import explorePlaces from './map/explorePlaces';
 import chat from './planning/chat';
+import { websockets } from './planning/websockets';
 
 const createRootReducer = history =>
   combineReducers({
@@ -27,6 +28,7 @@ const createRootReducer = history =>
     tripDestination,
     explorePlaces,
     chat,
+    websockets,
   });
 
 export default createRootReducer;

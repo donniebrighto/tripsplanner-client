@@ -1,6 +1,7 @@
 const initialState = {
   messages: [],
-  input: ''
+
+  input: '',
 };
 
 function chat(state = initialState, action) {
@@ -8,12 +9,14 @@ function chat(state = initialState, action) {
     case 'ADD_MESSAGE':
       return {
         ...state,
-        messages: [...state.messages, action.message]
+
+        messages: [...state.messages, action.message],
       };
     case 'TYPE_MESSAGE':
       return {
         ...state,
-        input: action.input
+
+        input: action.input,
       };
     default:
       return state;
@@ -21,3 +24,8 @@ function chat(state = initialState, action) {
 }
 
 export default chat;
+
+
+
+
+

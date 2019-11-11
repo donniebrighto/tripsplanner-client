@@ -5,7 +5,7 @@ import MembersList from './MembersList';
 import ControlPanel from './ControlPanel';
 
 const TaskBar = props => {
-  const { name, destination, startDate, endDate, tags, members } = props;
+  const { name, destination, startDate, endDate, tags, memberships } = props;
 
   if (!destination) {
     return (
@@ -27,7 +27,7 @@ const TaskBar = props => {
         />
       </GridColumn>
       <GridColumn width={3} style={{ padding: '0', height: '100%' }}>
-        <MembersList members={members} />
+        <MembersList memberships={memberships} />
       </GridColumn>
       <GridColumn width={10}>
         <ControlPanel />

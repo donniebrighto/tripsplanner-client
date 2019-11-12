@@ -23,11 +23,12 @@ export const endpoints = {
     future: `${base_url}/trips/future`,
     active: `${base_url}/trips/active`,
     addMember: id => `${base_url}/trips/${id}/member`,
+    chatMessages: id => `${base_url}/trips/${id}/chat`,
   },
   tag: {
     findAll: `${base_url}/trips/tags`,
   },
   image: {
     upload: `${base_url}/image/upload`,
-  },
+  }
 };

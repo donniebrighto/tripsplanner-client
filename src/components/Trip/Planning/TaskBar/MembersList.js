@@ -1,8 +1,6 @@
 import React from 'react';
 import { Image, List } from 'semantic-ui-react';
 import AddMemberModal from './AddMemberModal';
-
-
 import moment from 'moment';
 import 'moment/locale/pl';
 

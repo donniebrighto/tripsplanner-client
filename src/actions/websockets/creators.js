@@ -1,3 +1,6 @@
+import axios from 'axios';
+import { endpoints, requestConfig } from '../../api/local/config';
+
 const registerClient = stompClient => ({
   type: 'REGISTER_CLIENT',
   stompClient,
@@ -17,6 +20,25 @@ const notify = notification => ({
   type: 'NOTIFY',
   notification,
 });
+const requestTripMessages = () => ({
+  type: 'REQUEST_TRIP_MESSAGES',
+});
+const retrieveTripMessages = messages => ({
+  type: 'RETRIEVE_TRIP_MESSAGES',
+  messages,
+});
+const fetchTripMessages = tripId => async dispatch => {
+  dispatch(requestTripMessages);
+  try {
+    const response = await axios.get(
+      endpoints.trip.chatMessages(tripId),
+      requestConfig()
+    );
+    dispatch(retrieveTripMessages(response.data));
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 export const REALTIME = {
   registerClient,
@@ -24,5 +46,5 @@ export const REALTIME = {
   addMessage,
   typeMessage,
   notify,
+  fetchTripMessages
 };
-

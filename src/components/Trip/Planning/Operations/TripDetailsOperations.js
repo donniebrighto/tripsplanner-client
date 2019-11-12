@@ -4,17 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { useRouteMatch } from 'react-router';
 import { Routes } from '../../../../Routes';
 import ExplorePlaces from './ExplorePlaces';
-
-
-
-
-
 import Chat from './Chat';
-
-
-
-
-
 
 const routes = path => ({
   private: [

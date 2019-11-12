@@ -132,7 +132,7 @@ class TripDetails extends React.Component {
           <TaskBar {...props.details} />
         </GridRow>
         <GridRow style={{ paddingBottom: '0px', height: 'calc(100% - 120px)' }}>
-          <GridColumn width={6} style={{ paddingRight: '0px' }}>
+          <GridColumn width={6} style={{ paddingRight: '0px', height: '100%' }}>
             <TripDetailsOperations />
           </GridColumn>
           <GridColumn

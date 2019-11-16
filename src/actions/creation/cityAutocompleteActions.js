@@ -1,12 +1,20 @@
-import { PLAN_FORM } from './creators';
-import { endpoints } from '../config';
 import iso3_to_iso2_map from '../../utils/countryCodeMap';
+import { here } from '../../config/endpoints';
+
+const requestCitySuggestion = () => ({
+  type: 'REQUEST_CITY_SUGGESTION',
+});
+
+const retrieveCitySuggestion = suggestions => ({
+  type: 'RETRIEVE_CITY_SUGGESTION',
+  suggestions,
+});
 
 export function cityAutocomplete(input) {
   return dispatch => {
-    dispatch(PLAN_FORM.requestCitySuggestion());
+    dispatch(requestCitySuggestion());
     fetchCitiesSuggestion(input).then(suggestions => {
-      dispatch(PLAN_FORM.retrieveCitySuggestion(suggestions));
+      dispatch(retrieveCitySuggestion(suggestions));
     });
   };
 }
@@ -14,7 +22,7 @@ export function cityAutocomplete(input) {
 const EMPTY_INPUT_RESULT = [];
 
 function createResourceURLWithParam(param) {
-  return `${endpoints.autocomplete}&query=${param}&language=pl`;
+  return `${here.autocomplete}&query=${param}&language=pl`;
 }
 
 function fetchCitiesSuggestion(input) {
@@ -24,7 +32,7 @@ function fetchCitiesSuggestion(input) {
     .then(response => response.json())
     .then(json => {
       let { suggestions } = json;
-      // TODO odfiltrować gminy z wyników
+
       if (suggestions) {
         return suggestions.filter(element => element.matchLevel === 'city');
       }

@@ -1,20 +1,29 @@
-import { endpoints } from '../config';
-import { requestCityLocation, retrieveCityLocation } from './creators';
+import axios from 'axios';
+import { here } from '../../config/endpoints';
 
-export default function fetchCityLocation(locationId) {
-  return dispatch => {
-    dispatch(requestCityLocation());
-    getLocationFromLocationId(locationId).then(location =>
-      dispatch(retrieveCityLocation(location))
-    );
-  };
-}
+const requestCityLocation = () => ({
+  type: 'REQUEST_CITY_LOCATION',
+});
 
-function getLocationFromLocationId(locationId) {
-  return fetch(`${endpoints.geocoder}&locationId=${locationId}`)
-    .then(response => response.json())
-    .then(data => processResult(data));
-}
+const retrieveCityLocation = location => ({
+  type: 'RETRIEVE_CITY_LOCATION',
+  location,
+});
+
+export const geocodeCityFromLocationId = locationId => async dispatch => {
+  dispatch(requestCityLocation());
+  try {
+    const response = await axios.get(here.geocoder, {
+      params: {
+        locationId: locationId,
+      },
+    });
+    const data = processResult(response.data);
+    dispatch(retrieveCityLocation(data));
+  } catch (e) {
+    console.log(e);
+  }
+};
 
 function processResult(data) {
   if (!isResponseViewOk(data)) {

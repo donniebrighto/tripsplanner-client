@@ -1,6 +1,6 @@
-import { AUTHENTICATION } from './auth/creators';
-import { PLAN_FORM } from './planForm/creators';
-import { TRIPS } from './trips/creators';
-import { REALTIME } from './websockets/creators';
+import { AUTHENTICATION } from './auth';
+import { CREATION } from './creation';
+import { EXPLORING } from './exploring';
+import { PLANNING } from './planning';
 
-export { AUTHENTICATION, PLAN_FORM, TRIPS, REALTIME };
+export { AUTHENTICATION, CREATION, PLANNING, EXPLORING };

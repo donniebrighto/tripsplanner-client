@@ -2,7 +2,7 @@ import React from 'react';
 import { Redirect, Route, Switch } from 'react-router';
 
 import Home from './components/Home';
-import OAuth2RedirectHandler from './components/Auth/OAuth2RedirectHandler';
+import OAuth2RedirectHandler from './components/auth/OAuth2RedirectHandler';
 import { TripsView } from './components/Trip/TripsView';
 
 const isUserAuthenticated = () => !!localStorage.getItem('accessToken');

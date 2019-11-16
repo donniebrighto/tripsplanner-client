@@ -1,13 +1,17 @@
+import { HERE_APP_ID, HERE_APP_CODE, GOOGLE_PLACES_API } from './keys';
+
+export const here = {
+  autocomplete: `http://autocomplete.geocoder.api.here.com/6.2/suggest.json?app_id=${HERE_APP_ID}&app_code=${HERE_APP_CODE}`,
+  geocoder: `http://geocoder.api.here.com/6.2/geocode.json?app_id=${HERE_APP_ID}&app_code=${HERE_APP_CODE}`,
+  explore: `https://places.cit.api.here.com/places/v1/discover/explore?app_id=${HERE_APP_ID}&app_code=${HERE_APP_CODE}`,
+};
+
+const google = {};
+
 const base_url = 'http://localhost:8080';
 const oauth2_redirect_uri = 'http://localhost:3000/oauth2/redirect';
 
-export const requestConfig = () => ({
-  headers: {
-    Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-  },
-});
-
-export const endpoints = {
+export const local = {
   auth: {
     oauth2: `${base_url}/oauth2/authorize/google?redirect_uri=${oauth2_redirect_uri}`,
   },
@@ -16,6 +20,7 @@ export const endpoints = {
     email: `${base_url}/user/email`,
   },
   trip: {
+    concrete: id => `${base_url}/trips/${id}`,
     create: `${base_url}/trips/create`,
     all: `${base_url}/trips/all`,
     base: `${base_url}/trips/`,

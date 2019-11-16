@@ -1,6 +1,6 @@
 const initialState = {};
 
-function tripDestination(state = initialState, action) {
+function destinationGeocodingReducer(state = initialState, action) {
   switch (action.type) {
     case 'REQUEST_CITY_LOCATION':
       return {
@@ -18,4 +18,4 @@ function tripDestination(state = initialState, action) {
   }
 }
 
-export default tripDestination;
+export default destinationGeocodingReducer;

@@ -1,7 +1,20 @@
-const initialState = {};
+const initialState = {
+  suggestion: [],
+};
 
-function addMember(state = initialState, action) {
+function memberAdditionReducer(state = initialState, action) {
   switch (action.type) {
+    case 'REQUEST_USER_SUGGESTION':
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case 'RETRIEVE_USER_SUGGESTION':
+      return {
+        ...state,
+        isLoading: false,
+        suggestion: action.suggestion,
+      };
     case 'FILL_MEMBER_TO_ADD':
       return {
         ...state,
@@ -25,4 +38,4 @@ function addMember(state = initialState, action) {
   }
 }
 
-export default addMember;
+export default memberAdditionReducer;

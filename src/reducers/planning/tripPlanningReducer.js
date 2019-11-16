@@ -57,7 +57,7 @@ function mergeWithNotificationsIfNeeded(state, action) {
   };
 }
 
-function tripDetails(state = initialState, action) {
+function tripPlanningReducer(state = initialState, action) {
   switch (action.type) {
     case 'REQUEST_TRIP_DETAILS':
       return {
@@ -73,4 +73,4 @@ function tripDetails(state = initialState, action) {
   }
 }
 
-export default tripDetails;
+export default tripPlanningReducer;

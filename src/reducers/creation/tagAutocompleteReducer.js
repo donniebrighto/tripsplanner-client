@@ -3,7 +3,7 @@ const initialState = {
   isLoading: false,
 };
 
-function tagSuggestion(state = initialState, action) {
+function tagAutocompleteReducer(state = initialState, action) {
   switch (action.type) {
     case 'REQUEST_TAG_SUGGESTION':
       return {
@@ -21,4 +21,4 @@ function tagSuggestion(state = initialState, action) {
   }
 }
 
-export default tagSuggestion;
+export default tagAutocompleteReducer;

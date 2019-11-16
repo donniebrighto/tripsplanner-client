@@ -3,7 +3,7 @@ const initialState = {
   userAuthenticated: false,
 };
 
-function authentication(state = initialState, action) {
+function authenticationReducer(state = initialState, action) {
   switch (action.type) {
     case 'REQUEST_USER_DATA':
       return {
@@ -27,4 +27,4 @@ function authentication(state = initialState, action) {
   }
 }
 
-export default authentication;
+export default authenticationReducer;

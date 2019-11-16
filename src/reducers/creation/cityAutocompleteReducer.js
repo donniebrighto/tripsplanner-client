@@ -3,7 +3,7 @@ const initialState = {
   isLoading: false,
 };
 
-function citySuggestion(state = initialState, action) {
+function cityAutocompleteReducer(state = initialState, action) {
   switch (action.type) {
     case 'REQUEST_CITY_SUGGESTION':
       return {
@@ -21,4 +21,4 @@ function citySuggestion(state = initialState, action) {
   }
 }
 
-export default citySuggestion;
+export default cityAutocompleteReducer;

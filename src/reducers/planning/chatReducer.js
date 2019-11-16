@@ -3,7 +3,7 @@ const initialState = {
   input: '',
 };
 
-function chat(state = initialState, action) {
+function chatReducer(state = initialState, action) {
   switch (action.type) {
     case 'ADD_MESSAGE':
       return {
@@ -31,4 +31,4 @@ function chat(state = initialState, action) {
   }
 }
 
-export default chat;
+export default chatReducer;

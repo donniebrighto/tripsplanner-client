@@ -1,6 +1,6 @@
 const initialState = {};
 
-function explorePlaces(state = initialState, action) {
+function placesSearchReducer(state = initialState, action) {
   switch (action.type) {
     case 'REQUEST_PLACES':
       return {
@@ -18,4 +18,4 @@ function explorePlaces(state = initialState, action) {
   }
 }
 
-export default explorePlaces;
+export default placesSearchReducer;

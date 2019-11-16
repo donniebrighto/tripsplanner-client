@@ -1,6 +1,6 @@
 const initialState = {};
 
-function exploreTrips(state = initialState, action) {
+function tripsExplorationReducer(state = initialState, action) {
   switch (action.type) {
     case 'REQUEST_TRIPS':
       return {
@@ -23,4 +23,4 @@ function exploreTrips(state = initialState, action) {
   }
 }
 
-export default exploreTrips;
+export default tripsExplorationReducer;

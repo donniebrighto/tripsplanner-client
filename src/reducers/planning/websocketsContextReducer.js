@@ -2,7 +2,7 @@ const initialState = {
   stompClient: undefined,
 };
 
-export const websockets = (state = initialState, action) => {
+const websocketsContextReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'REGISTER_CLIENT':
       return {
@@ -14,3 +14,5 @@ export const websockets = (state = initialState, action) => {
       return state;
   }
 };
+
+export default websocketsContextReducer;

@@ -27,7 +27,7 @@ function fillCityStoreLocation(state, { label, locationId, iso2flag }) {
   return newState;
 }
 
-function planForm(state = initialState, action) {
+function tripCreationFormReducer(state = initialState, action) {
   switch (action.type) {
     case 'FILL_FIELD':
       return fillField(action, state);
@@ -45,4 +45,4 @@ function planForm(state = initialState, action) {
   }
 }
 
-export default planForm;
+export default tripCreationFormReducer;

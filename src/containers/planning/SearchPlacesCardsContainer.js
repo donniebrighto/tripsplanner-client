@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Button, Card, Label } from 'semantic-ui-react';
 
-const ExplorePlaces = props => {
+const SearchPlacesCardsContainer = props => {
   const { places } = props;
 
   if (places) {
@@ -30,6 +30,7 @@ const ExplorePlaces = props => {
         </Card>
       );
     });
+
     return (
       <Card.Group style={{ height: '100%', overflowY: 'scroll' }}>
         {placesList}
@@ -40,6 +41,6 @@ const ExplorePlaces = props => {
   return <div />;
 };
 
-const mapStateToProps = state => ({ ...state.explorePlaces });
+const mapStateToProps = state => ({ ...state.planning.placesSearch });
 
-export default connect(mapStateToProps)(ExplorePlaces);
+export default connect(mapStateToProps)(SearchPlacesCardsContainer);

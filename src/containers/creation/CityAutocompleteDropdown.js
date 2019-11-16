@@ -1,12 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { PLAN_FORM } from '../../../actions';
+import { CREATION } from '../../actions';
 import { Dropdown } from 'semantic-ui-react';
 
-const CitySearch = props => {
+const CityAutocompleteDropdown = props => {
   const { onChange, minCharacters, suggestions, isLoading } = props;
-
-  console.log('on change', onChange);
 
   return (
     <Dropdown
@@ -26,7 +24,7 @@ const CitySearch = props => {
 };
 
 const mapStateToProps = state => {
-  const { suggestions, isLoading } = state.citySuggestion;
+  const { suggestions, isLoading } = state.creation.cityAutocomplete;
   return {
     suggestions,
     isLoading,
@@ -39,7 +37,7 @@ const mapDispatchToProps = dispatch => {
       if (searchQuery.length < minCharacters) {
         return;
       }
-      dispatch(PLAN_FORM.cityAutocomplete(searchQuery));
+      dispatch(CREATION.cityAutocomplete(searchQuery));
     },
   };
 };
@@ -47,4 +45,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(CitySearch);
+)(CityAutocompleteDropdown);

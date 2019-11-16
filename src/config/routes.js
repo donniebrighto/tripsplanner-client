@@ -1,10 +1,10 @@
 import TripCreationForm from '../containers/creation/TripCreationForm';
-import TripDetails from '../components/planning/TripPlanningView';
-import TripExplorationView from '../components/exploring/ExploreTrips';
+import TripDetails from '../containers/planning/TripPlanningContainer';
+import TripExplorationView from '../containers/exploring/TripExploringContainer';
 import Home from '../components/Home';
 import OAuth2RedirectHandler from '../components/auth/OAuth2RedirectHandler';
-import ExplorePlaces from '../components/planning/Operations/ExplorePlaces';
-import Chat from '../components/planning/Operations/Chat';
+import ExplorePlaces from '../containers/planning/SearchPlacesCardsContainer';
+import Chat from '../containers/planning/Chat';
 
 const planningUrl = '/planning/:id';
 

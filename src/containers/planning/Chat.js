@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Comment, Form } from 'semantic-ui-react';
-import { AUTHENTICATION, REALTIME } from '../../../../actions';
+import { AUTHENTICATION, PLANNING } from '../../actions';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router';
 import moment from 'moment';
@@ -99,8 +99,8 @@ const Chat = props => {
 
 const mapStateToProps = state => {
   const { currentUser } = state.authentication;
-  const { messages, input } = state.chat;
-  const { stompClient } = state.websockets;
+  const { messages, input } = state.planning.chat;
+  const { stompClient } = state.planning.websocketsContext;
   return {
     currentUser,
     messages,
@@ -111,8 +111,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
   fetchCurrentUser: AUTHENTICATION.fetchCurrentUser,
-  typeMessage: REALTIME.typeMessage,
-  fetchTripMessages: REALTIME.fetchTripMessages,
+  typeMessage: PLANNING.CHAT.typeMessage,
+  fetchTripMessages: PLANNING.CHAT.fetchTripMessages,
 };
 
 export default connect(

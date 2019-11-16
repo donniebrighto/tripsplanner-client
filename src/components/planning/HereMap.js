@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { API_KEY } from '../../../actions/config';
+import { HERE_MAPS_API_KEY } from '../../config/keys';
 import pin from './pins/hotels.png';
 
 const MAP_ID = 'map-container';
@@ -12,7 +12,7 @@ class HereMap extends Component {
   constructor(props) {
     super(props);
     this.platform = new window.H.service.Platform({
-      apikey: `${API_KEY}`,
+      apikey: `${HERE_MAPS_API_KEY}`,
     });
 
     this.maptypes = this.platform.createDefaultLayers();

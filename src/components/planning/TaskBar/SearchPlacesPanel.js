@@ -1,9 +1,9 @@
 import React from 'react';
 import { Button, Search } from 'semantic-ui-react';
-import FilterButton from './FilterButton';
 import { categories } from './filterCategories';
+import FilterButton from '../../../containers/planning/FilterButton';
 
-const ControlPanel = () => {
+const SearchPlacesPanel = () => {
   let filterButtons = categories.map((category, key) => (
     <FilterButton
       key={key}
@@ -43,4 +43,4 @@ const ControlPanel = () => {
   );
 };
 
-export default ControlPanel;
+export default SearchPlacesPanel;

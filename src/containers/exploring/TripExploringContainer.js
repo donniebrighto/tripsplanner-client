@@ -7,14 +7,14 @@ import {
   Loader,
   Segment,
 } from 'semantic-ui-react';
-import './masonry.css';
-import SectionHeader from '../../SectionHeader';
 
-import { TRIPS } from '../../../actions';
+import '../../components/exploring/masonry.css';
 import { connect } from 'react-redux';
-import TripCard from './TripCard';
+import { EXPLORING } from '../../actions';
+import SectionHeader from '../../components/SectionHeader';
+import TripCard from '../../components/exploring/TripCard';
 
-const ExploreTrips = props => {
+const TripExploringContainer = props => {
   const { isLoading, trips } = props;
 
   useEffect(() => {
@@ -59,15 +59,14 @@ const ExploreTrips = props => {
 };
 
 const mapStateToProps = state => ({
-  ...state.exploreTrips,
+  ...state.exploring.tripsExploration,
 });
 
 const mapDispatchToProps = {
-  fetchTrips: TRIPS.fetchTrips,
-  resetTrips: TRIPS.resetTrips,
+  fetchTrips: EXPLORING.fetchTrips,
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ExploreTrips);
+)(TripExploringContainer);

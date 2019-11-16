@@ -1,19 +1,17 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
 import { Dropdown, Icon, Menu } from 'semantic-ui-react';
-
+import { local } from '../../config/endpoints';
 import { AUTHENTICATION } from '../../actions';
-import { endpoints } from '../../api/local/config';
+import { connect } from 'react-redux';
 
-const AuthSpecificElement = props => {
+const AuthSpecificMenuItem = props => {
   useEffect(() => {
     if (localStorage.getItem('accessToken')) {
       if (!props.currentUser && !props.isLoading) {
         props.fetchCurrentUser();
       }
     }
-  });
+  }, []);
 
   if (props.currentUser) {
     return (
@@ -40,39 +38,21 @@ const AuthSpecificElement = props => {
 
   return (
     <Menu.Menu position="right">
-      <Menu.Item as="a" href={endpoints.auth.oauth2}>
+      <Menu.Item as="a" href={local.auth.oauth2}>
         <Icon name="google plus" color="red" />
         Dołącz
       </Menu.Item>
     </Menu.Menu>
   );
 };
+
 const mapStateToProps = ({ authentication }) => ({ ...authentication });
 const mapDispatchToProps = {
   fetchCurrentUser: AUTHENTICATION.fetchCurrentUser,
   logout: AUTHENTICATION.logout,
 };
-const ConnectedAuthSpecificElement = connect(
+
+export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(AuthSpecificElement);
-
-const MainNavigation = props => (
-  <Menu.Menu position="right">
-    <Menu.Item as={NavLink} to="/flights">
-      <Icon name="plane" />
-      Loty
-    </Menu.Item>
-    <Menu.Item as={NavLink} to="/accommodations">
-      <Icon name="hotel" />
-      Hotele
-    </Menu.Item>
-    <Menu.Item as={NavLink} to="/trips">
-      <Icon name="travel" />
-      Podróże
-    </Menu.Item>
-    <ConnectedAuthSpecificElement {...props} />
-  </Menu.Menu>
-);
-
-export default MainNavigation;
+)(AuthSpecificMenuItem);

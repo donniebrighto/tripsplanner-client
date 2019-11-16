@@ -1,14 +1,13 @@
 import React from 'react';
 import { Dimmer, Grid, GridColumn, GridRow, Loader } from 'semantic-ui-react';
-
-import { TRIPS } from '../../../actions';
+import { PLANNING, AUTHENTICATION } from '../../actions';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import TaskBar from './TaskBar/TaskBar';
-import MapWrapper from './MapWrapper';
-import TripDetailsOperations from './Operations/TripDetailsOperations';
+import TaskBar from '../../components/planning/TaskBar/TaskBar';
+import MapWrapper from './MapContainer';
+import TripDetailsOperations from '../../components/planning/Operations/TripDetailsOperations';
 
-const TripDetails = props => {
+const TripPlanningContainer = props => {
   const { id } = useParams();
 
   if (!props.details) {
@@ -22,7 +21,7 @@ const TripDetails = props => {
   }
 
   return (
-    <Grid style={{ height: 'calc(100vh - 80px)' }}>
+    <Grid style={{ height: 'calc(100vh - 40px)' }}>
       <GridRow style={{ height: '120px', paddingBottom: '0px' }}>
         <TaskBar {...props.details} />
       </GridRow>
@@ -42,21 +41,21 @@ const TripDetails = props => {
 };
 
 const mapStateToProps = state => ({
-  ...state.tripDetails,
+  ...state.planning.tripPlanning,
   currentUser: state.authentication.currentUser,
-  stompClient: state.websockets.stompClient,
+  stompClient: state.planning.websocketsContext.stompClient,
 });
 
 const mapDispatchToProps = {
-  fetchTripDetails: TRIPS.fetchTripDetails,
+  fetchTripDetails: PLANNING.fetchTripDetails,
   fetchCurrentUser: AUTHENTICATION.fetchCurrentUser,
-  notify: REALTIME.notify,
-  registerClient: REALTIME.registerClient,
-  unregisterClient: REALTIME.unregisterClient,
-  addMessage: REALTIME.addMessage,
+  notify: PLANNING.CHAT.notify,
+  registerClient: PLANNING.WEBSOCKETS_CONTEXT.registerClient,
+  unregisterClient: PLANNING.WEBSOCKETS_CONTEXT.unregisterClient,
+  addMessage: PLANNING.CHAT.addMessage,
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(TripDetails);
+)(TripPlanningContainer);

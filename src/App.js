@@ -1,12 +1,12 @@
 import React from 'react';
-
-import Menu from './components/Menu/MainMenu';
+import Menu from './components/navigation/MainMenu';
 import { Routes } from './Routes';
+import { mainRoutes } from './config/routes';
 
 const App = () => (
   <div>
     <Menu />
-    <Routes />
+    <Routes routes={mainRoutes} />
   </div>
 );
 

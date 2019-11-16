@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'semantic-ui-react';
-import { MAP } from '../../../../actions/map/creators';
 import { connect } from 'react-redux';
+import { PLANNING } from '../../actions';
 
 const styles = {
   display: 'flex',
@@ -34,11 +34,11 @@ const FilterButton = props => {
 };
 
 const mapStateToProps = state => ({
-  ...state.explorePlaces,
+  ...state.planning.placesSearch,
 });
 
 const mapDispatchToProps = {
-  fetchPlaces: MAP.fetchPlaces,
+  fetchPlaces: PLANNING.PLACES_SEARCH.fetchPlaces,
 };
 
 export default connect(

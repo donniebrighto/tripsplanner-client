@@ -1,9 +1,5 @@
 import React from 'react';
-import { Redirect, Route, Switch } from 'react-router';
-
-import Home from './components/Home';
-import OAuth2RedirectHandler from './components/auth/OAuth2RedirectHandler';
-import { TripsView } from './components/Trip/TripsView';
+import { Redirect, Route } from 'react-router';
 
 const isUserAuthenticated = () => !!localStorage.getItem('accessToken');
 
@@ -48,12 +44,5 @@ export const Routes = props => {
       </React.Fragment>
     );
   }
-
-  return (
-    <Switch>
-      <Route exact path="/" component={Home} />
-      <Route path="/trips" component={TripsView} />
-      <Route path="/oauth2/redirect" component={OAuth2RedirectHandler} />
-    </Switch>
-  );
+  return <></>;
 };

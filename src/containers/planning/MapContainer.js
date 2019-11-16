@@ -1,10 +1,10 @@
 import React from 'react';
-import fetchCityLocation from '../../../actions/map/tripDestination';
 import { connect } from 'react-redux';
 import { Dimmer, Loader } from 'semantic-ui-react';
-import HereMap from './HereMap';
+import HereMap from '../../components/planning/HereMap';
+import { PLANNING } from '../../actions';
 
-const MapWrapper = props => {
+const MapContainer = props => {
   const { isLoading, location, locationId, places } = props;
   if (!location) {
     if (!isLoading) props.fetchCityLocation(locationId);
@@ -20,15 +20,15 @@ const MapWrapper = props => {
 };
 
 const mapStateToProps = state => ({
-  ...state.tripDestination,
-  ...state.explorePlaces,
+  ...state.planning.destinationGeocoding,
+  ...state.planning.placesSearch,
 });
 
 const mapDispatchToProps = {
-  fetchCityLocation,
+  fetchCityLocation: PLANNING.geocodeCityFromLocationId,
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(MapWrapper);
+)(MapContainer);

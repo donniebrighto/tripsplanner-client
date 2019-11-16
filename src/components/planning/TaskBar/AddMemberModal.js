@@ -1,7 +1,8 @@
 import React from 'react';
 import { Button, Dropdown, Message, Modal } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { TRIPS } from '../../../../actions';
+import { PLANNING } from '../../../actions';
+import { MEMBER_ADDITION } from '../../../actions/planning/memberAdditionActions';
 
 const AddMemberModal = props => (
   <Modal
@@ -38,20 +39,21 @@ const AddMemberModal = props => (
 );
 
 const mapStateToProps = state => ({
-  ...state.usersSuggestion,
-  addMemberLoading: state.addMember.isLoading,
-  member: state.addMember.member,
-  success: state.addMember.success,
-  id: state.tripDetails.details ? state.tripDetails.details.id : undefined,
+  ...state.planning.memberAddition,
+  id: state.planning.tripPlanning.details
+    ? state.planning.tripPlanning.details.id
+    : undefined,
 });
 
 const mapDispatchToProps = dispatch => ({
   suggest: (searchQuery, minCharacters) => {
     if (searchQuery.length < minCharacters) return;
-    dispatch(TRIPS.suggestMembersToAdd(searchQuery));
+    dispatch(PLANNING.MEMBER_ADDITION.suggestMembersToAdd(searchQuery));
   },
-  addMember: (id, member) => () => dispatch(TRIPS.addMemberToTrip(id, member)),
-  fillMemberToAdd: (e, { value }) => dispatch(TRIPS.fillMemberToAdd(value)),
+  addMember: (id, member) => () =>
+    dispatch(PLANNING.MEMBER_ADDITION.addMemberToTrip(id, member)),
+  fillMemberToAdd: (e, { value }) =>
+    dispatch(PLANNING.MEMBER_ADDITION.fillMemberToAdd(value)),
 });
 
 export default connect(

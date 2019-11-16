@@ -1,8 +1,8 @@
 import React from 'react';
 import { Dimmer, GridColumn, Loader } from 'semantic-ui-react';
 import TripHeader from './TripHeader';
-import MembersList from './MembersList';
-import ControlPanel from './ControlPanel';
+import TripMembersList from './TripMembersList';
+import SearchPlacesPanel from './SearchPlacesPanel';
 
 const TaskBar = props => {
   const { name, destination, startDate, endDate, tags, memberships } = props;
@@ -27,10 +27,10 @@ const TaskBar = props => {
         />
       </GridColumn>
       <GridColumn width={3} style={{ padding: '0', height: '100%' }}>
-        <MembersList memberships={memberships} />
+        <TripMembersList memberships={memberships} />
       </GridColumn>
       <GridColumn width={10}>
-        <ControlPanel />
+        <SearchPlacesPanel />
       </GridColumn>
     </React.Fragment>
   );

@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Button, Container, Form, Icon } from 'semantic-ui-react';
-
-import { PLAN_FORM } from '../../../actions';
-import CitySearch from './CitySearch';
-import SectionHeader from '../../SectionHeader';
+import { Button, Container, Form } from 'semantic-ui-react';
+import { CREATION } from '../../actions';
+import CitySearch from './CityAutocompleteDropdown';
+import SectionHeader from '../../components/SectionHeader';
 
 const LABELS = {
   NAME: 'name',
@@ -13,21 +12,23 @@ const LABELS = {
   TAGS: 'tags',
 };
 
-const CreateTripForm = props => {
-  if (!props.isLoading && !props.available_tags.length) {
-    props.fetchTags();
-  }
+const TripCreationForm = props => {
+  useEffect(() => {
+    if (!props.isLoading && !props.available_tags.length) {
+      props.fetchTags();
+    }
+  }, []);
 
   return (
     <Container style={{ paddingBottom: '15px' }}>
       <SectionHeader
-        title="Kreator Planu"
-        subtitle="Stwórz swój plan razem ze znajomymi"
+        title="Stwórz wycieczkę"
+        subtitle="Wypełnij poniższy formularz, aby rozpocząć tworzenia planu wycieczki"
         iconName="edit outline"
       />
       <Form onSubmit={props.submit(props)}>
         <Form.Field>
-          <label>Nazwa Planu</label>
+          <label>Nazwa wycieczki</label>
           <Form.Input
             type="text"
             placeholder="np. Fajna majóweczka w Budapeszcie"
@@ -80,9 +81,8 @@ const CreateTripForm = props => {
             onChange={props.handleImageUpload}
           />
         </Form.Field>
-        <Button icon labelPosition="right" color="teal">
+        <Button fluid color="teal">
           Stwórz
-          <Icon name="right arrow" />
         </Button>
       </Form>
     </Container>
@@ -97,11 +97,9 @@ const mapStateToProps = state => {
     endDate,
     tags,
     imageId,
-  } = state.planForm;
+  } = state.creation.tripCreationForm;
 
-  const { isLoading, available_tags } = state.tagSuggestion;
-
-  const { currentUser } = state.authentication;
+  const { isLoading, available_tags } = state.creation.tagAutocomplete;
 
   return {
     name,
@@ -111,7 +109,6 @@ const mapStateToProps = state => {
     chosen_tags: tags,
     available_tags,
     isLoading,
-    currentUser,
     imageId,
   };
 };
@@ -120,18 +117,18 @@ const mapDispatchToProps = dispatch => {
   return {
     handleFillingData: label => {
       return function(event, { value }) {
-        dispatch(PLAN_FORM.fillField(label, value));
+        dispatch(CREATION.fillField(label, value));
       };
     },
     handleFillingCity: (event, { value, options }) => {
       const data = options[value];
-      dispatch(PLAN_FORM.storeCityData(data.text, data.key, data.flag));
+      dispatch(CREATION.storeCityData(data.text, data.key, data.flag));
     },
     handleImageUpload: event => {
       const image = event.target.files[0];
-      dispatch(PLAN_FORM.upload(image));
+      dispatch(CREATION.upload(image));
     },
-    fetchTags: () => dispatch(PLAN_FORM.tagSuggestions()),
+    fetchTags: () => dispatch(CREATION.tagSuggestions()),
     submit: props => () => {
       const {
         name,
@@ -151,7 +148,7 @@ const mapDispatchToProps = dispatch => {
         imageId,
       };
 
-      dispatch(PLAN_FORM.submit(trip));
+      dispatch(CREATION.submit(trip));
     },
   };
 };
@@ -159,4 +156,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(CreateTripForm);
+)(TripCreationForm);

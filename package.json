@@ -18,8 +18,7 @@
     "redux-logger": "^3.0.6",
     "redux-promise-middleware": "^6.1.1",
     "redux-thunk": "^2.3.0",
-    "semantic-ui-react": "^0.88.1",
-    "sockjs-client": "^1.4.0"
+    "semantic-ui-react": "^0.88.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -51,6 +50,5 @@
     "hooks": {
       "pre-commit": "precise-commits"
     }
-  },
-  "proxy": "http://localhost:8080"
+  }
 }

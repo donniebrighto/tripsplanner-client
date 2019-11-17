@@ -8,7 +8,7 @@ import Chat from '../containers/planning/Chat';
 
 const planningUrl = '/planning/:id';
 
-export const tripPlanningUrl = id => `planning/${id}`;
+export const tripPlanningUrl = id => `/planning/${id}`;
 
 const mainRoutes = {
   public: [
@@ -35,12 +35,31 @@ const planningRoutes = {
     {
       path: `${planningUrl}/explore`,
       component: ExplorePlaces,
-      link: { text: 'Szukaj', icon: 'search' },
+      link: { text: 'Szukaj', icon: 'search', to: tripPlanningUrl },
+    },
+    {
+      path: `${planningUrl}/schedule`,
+      component: () => null,
+      link: {
+        text: 'Plan',
+        icon: 'list alternate outline',
+        to: tripPlanningUrl,
+      },
+    },
+    {
+      path: `${planningUrl}/transport`,
+      component: () => null,
+      link: { text: 'Transport', icon: 'bus', to: tripPlanningUrl },
+    },
+    {
+      path: `${planningUrl}/accommodation`,
+      component: () => null,
+      link: { text: 'Nocleg', icon: 'bed', to: tripPlanningUrl },
     },
     {
       path: `${planningUrl}/chat`,
       component: Chat,
-      link: { text: 'Czat', icon: 'chat' },
+      link: { text: 'Czat', icon: 'chat', to: tripPlanningUrl },
     },
   ],
 };

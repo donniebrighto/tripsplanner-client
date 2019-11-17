@@ -10,7 +10,7 @@ import TripDetailsOperations from '../../components/planning/Operations/TripDeta
 const TripPlanningContainer = props => {
   const { id } = useParams();
 
-  if (!props.details) {
+  if (!props.details || parseInt(id) !== props.details.id) {
     if (!props.isLoading) props.fetchTripDetails(id);
 
     return (

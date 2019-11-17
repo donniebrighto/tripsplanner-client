@@ -45,6 +45,14 @@ class HereMap extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState, nextContext) {
+    const { lng, lat } = this.props;
+    if (lng !== nextProps.lng && lat !== nextProps.lat) {
+      this.map.setCenter({
+        lng: nextProps.lng,
+        lat: nextProps.lat,
+      });
+    }
+
     const { places } = nextProps;
     if (!places) return false;
 

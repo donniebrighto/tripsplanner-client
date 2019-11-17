@@ -13,15 +13,25 @@ function concatPublicAndPrivateRoutes(routes) {
   return result;
 }
 
-const mapRoutesToMenuItems = routes => {
+function mapToItems(allRoutes, id) {
+  return allRoutes.map(({ path, link, to }, key) => {
+    if (id && to) {
+      path = to(id);
+    }
+
+    return (
+      <Menu.Item as={NavLink} to={path} key={key}>
+        <Icon name={link.icon} />
+        {link.text}
+      </Menu.Item>
+    );
+  });
+}
+
+const mapRoutesToMenuItems = (routes, id) => {
   let allRoutes = concatPublicAndPrivateRoutes(routes);
   allRoutes = allRoutes.filter(route => !!route.link);
-  return allRoutes.map(({ path, link }, key) => (
-    <Menu.Item as={NavLink} to={path} key={key}>
-      <Icon name={link.icon} />
-      {link.text}
-    </Menu.Item>
-  ));
+  return mapToItems(allRoutes, id);
 };
 
 export { mapRoutesToMenuItems };

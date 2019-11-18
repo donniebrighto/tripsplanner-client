@@ -1,7 +1,7 @@
 import React from 'react';
-import { Routes } from '../../../Routes';
-import { planningRoutes } from '../../../config/routes';
-import PlanningOperationsMenu from '../../navigation/PlanningOperationsMenu';
+import { Routes } from '../../Routes';
+import { planningRoutes } from '../../config/routes';
+import PlanningOperationsMenu from '../navigation/PlanningOperationsMenu';
 
 const TripDetailsOperations = () => {
   return (

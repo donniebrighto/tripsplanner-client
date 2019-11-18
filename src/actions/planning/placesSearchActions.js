@@ -1,5 +1,5 @@
-import axios from 'axios';
-import { here } from '../../config/endpoints';
+import client from '../client';
+import { local } from '../../config/endpoints';
 
 const requestPlaces = category => ({
   type: 'REQUEST_PLACES',
@@ -14,15 +14,16 @@ const retrievePlaces = places => ({
 export const fetchPlaces = category => async dispatch => {
   dispatch(requestPlaces(category));
   try {
-    const response = await axios.get(here.explore, {
+    const response = await client().get(local.google.nearby, {
       params: {
         language: 'pl',
-        cat: category,
-        at: localStorage.getItem('coordinates'),
+        type: category,
+        location: localStorage.getItem('coordinates'),
+        radius: local.google.default_radius,
       },
     });
     const { data } = response;
-    const places = data.results.items;
+    const places = data.results;
     dispatch(retrievePlaces(places));
   } catch (e) {
     console.log(e);

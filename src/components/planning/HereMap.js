@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { HERE_MAPS_API_KEY } from '../../config/keys';
-import pin from './pins/hotels.png';
 
 const MAP_ID = 'map-container';
 
@@ -42,6 +41,7 @@ class HereMap extends Component {
   storeCoordinates(map) {
     const point = map.getCenter();
     localStorage.setItem('coordinates', `${point.lat},${point.lng}`);
+    console.log(map.getZoom());
   }
 
   shouldComponentUpdate(nextProps, nextState, nextContext) {
@@ -54,14 +54,26 @@ class HereMap extends Component {
     }
 
     const { places } = nextProps;
-    if (!places) return false;
+    if (!places.length) return false;
 
-    places.forEach(place => {
-      const icon = new window.H.map.Icon(pin);
-      const coords = { lat: place.position[0], lng: place.position[1] };
-      const marker = new window.H.map.Marker(coords, { icon: icon });
-      this.map.addObject(marker);
-    });
+    try {
+      places.forEach(place => {
+        const icon = new window.H.map.Icon(place.icon, {
+          size: {
+            w: 30,
+            h: 30,
+          },
+        });
+        const coords = {
+          lat: Number.parseFloat(place.geometry.location.lat),
+          lng: Number.parseFloat(place.geometry.location.lng),
+        };
+        const marker = new window.H.map.Marker(coords, { icon: icon });
+        this.map.addObject(marker);
+      });
+    } catch (e) {
+      console.log('HERE ERROR', e);
+    }
 
     return false;
   }

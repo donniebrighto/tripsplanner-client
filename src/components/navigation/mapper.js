@@ -14,15 +14,17 @@ function concatPublicAndPrivateRoutes(routes) {
 }
 
 function mapToItems(allRoutes, id) {
-  return allRoutes.map(({ path, link, to }, key) => {
+  return allRoutes.map(({ path, link }, key) => {
+    console.log(link);
+    const { to, icon, text } = link;
     if (id && to) {
       path = to(id);
     }
 
     return (
       <Menu.Item as={NavLink} to={path} key={key}>
-        <Icon name={link.icon} />
-        {link.text}
+        <Icon name={icon} />
+        {text}
       </Menu.Item>
     );
   });

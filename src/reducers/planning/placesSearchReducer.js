@@ -1,4 +1,6 @@
-const initialState = {};
+const initialState = {
+  places: [],
+};
 
 function placesSearchReducer(state = initialState, action) {
   switch (action.type) {

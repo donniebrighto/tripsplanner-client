@@ -10,7 +10,7 @@ const SearchPlacesPanel = () => {
       icon={category.icon}
       color={category.color}
       name={category.name}
-      here={category.here}
+      google={category.google}
     />
   ));
 

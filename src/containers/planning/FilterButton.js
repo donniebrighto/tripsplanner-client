@@ -12,9 +12,9 @@ const styles = {
 };
 
 const FilterButton = props => {
-  const { here, category, fetchPlaces } = props;
-  const isLoading = category === here;
-  const onClick = () => fetchPlaces(here);
+  const { google, category, fetchPlaces } = props;
+  const isLoading = category === google;
+  const onClick = () => fetchPlaces(google);
 
   return (
     <div style={styles}>

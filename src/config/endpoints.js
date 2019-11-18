@@ -1,12 +1,10 @@
-import { HERE_APP_ID, HERE_APP_CODE, GOOGLE_PLACES_API } from './keys';
+import { HERE_APP_ID, HERE_APP_CODE } from './keys';
 
 export const here = {
   autocomplete: `http://autocomplete.geocoder.api.here.com/6.2/suggest.json?app_id=${HERE_APP_ID}&app_code=${HERE_APP_CODE}`,
   geocoder: `http://geocoder.api.here.com/6.2/geocode.json?app_id=${HERE_APP_ID}&app_code=${HERE_APP_CODE}`,
   explore: `https://places.cit.api.here.com/places/v1/discover/explore?app_id=${HERE_APP_ID}&app_code=${HERE_APP_CODE}`,
 };
-
-const google = {};
 
 const base_url = 'http://localhost:8080';
 const oauth2_redirect_uri = 'http://localhost:3000/oauth2/redirect';
@@ -35,5 +33,9 @@ export const local = {
   },
   image: {
     upload: `${base_url}/image/upload`,
+  },
+  google: {
+    nearby: `${base_url}/google/nearby`,
+    default_radius: 5000,
   },
 };

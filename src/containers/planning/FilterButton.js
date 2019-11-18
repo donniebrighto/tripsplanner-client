@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { PLANNING } from '../../actions';
+import { PLANNING } from '../../actions/planning';
 
 const styles = {
   display: 'flex',

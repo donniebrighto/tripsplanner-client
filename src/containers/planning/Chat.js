@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
 import { Comment, Form } from 'semantic-ui-react';
-import { AUTHENTICATION, PLANNING } from '../../actions';
+import { AUTHENTICATION } from '../../actions';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router';
 import moment from 'moment';
 import 'moment/locale/pl';
+import { PLANNING } from '../../actions/planning';
 
 const Chat = props => {
   const { id } = useParams();

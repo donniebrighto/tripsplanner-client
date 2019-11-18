@@ -1,8 +1,7 @@
 import React from 'react';
 import { Button, Dropdown, Message, Modal } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { PLANNING } from '../../../actions';
-import { MEMBER_ADDITION } from '../../../actions/planning/memberAdditionActions';
+import { PLANNING } from '../../../actions/planning';
 
 const AddMemberModal = props => (
   <Modal

@@ -10,7 +10,7 @@ import {
 
 import '../../components/exploring/masonry.css';
 import { connect } from 'react-redux';
-import { EXPLORING } from '../../actions';
+import { EXPLORING } from '../../actions/exploring';
 import SectionHeader from '../../components/SectionHeader';
 import TripCard from '../../components/exploring/TripCard';
 

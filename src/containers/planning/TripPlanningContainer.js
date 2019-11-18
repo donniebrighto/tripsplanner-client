@@ -1,11 +1,12 @@
 import React from 'react';
 import { Dimmer, Grid, GridColumn, GridRow, Loader } from 'semantic-ui-react';
-import { PLANNING, AUTHENTICATION } from '../../actions';
+import { AUTHENTICATION } from '../../actions';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import TaskBar from '../../components/planning/TaskBar/TaskBar';
 import MapWrapper from './MapContainer';
-import TripDetailsOperations from '../../components/planning/Operations/TripDetailsOperations';
+import TripDetailsOperations from '../../components/planning/TripDetailsOperations';
+import { PLANNING } from '../../actions/planning';
 
 const TripPlanningContainer = props => {
   const { id } = useParams();

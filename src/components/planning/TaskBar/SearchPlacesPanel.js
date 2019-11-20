@@ -1,7 +1,8 @@
 import React from 'react';
-import { Button, Search } from 'semantic-ui-react';
+import { Button } from 'semantic-ui-react';
 import { categories } from './filterCategories';
 import FilterButton from '../../../containers/planning/FilterButton';
+import AutosuggestPlaceSearch from '../../../containers/planning/AutosuggestPlaceSearch';
 
 const SearchPlacesPanel = () => {
   let filterButtons = categories.map((category, key) => (
@@ -37,7 +38,7 @@ const SearchPlacesPanel = () => {
       </Button.Group>
       <div style={{ display: 'flex' }}>
         {filterButtons}
-        <Search />
+        <AutosuggestPlaceSearch />
       </div>
     </div>
   );

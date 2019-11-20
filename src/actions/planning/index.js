@@ -4,6 +4,7 @@ import { geocodeCityFromLocationId } from './destinationGeocodingActions';
 import { PLACES_SEARCH } from './placesSearchActions';
 import { CHAT } from './chatActions';
 import { WEBSOCKETS_CONTEXT } from './websocketsContextActions';
+import { PLACES_AUTOSUGGESTIONS } from './placesAutosuggestionActions';
 
 export const PLANNING = {
   fetchTripDetails,
@@ -12,4 +13,5 @@ export const PLANNING = {
   PLACES_SEARCH,
   CHAT,
   WEBSOCKETS_CONTEXT,
+  PLACES_AUTOSUGGESTIONS,
 };

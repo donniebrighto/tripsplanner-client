@@ -1,6 +1,6 @@
 const initialState = {
   places: [],
-  suggestions: [],
+  isLoading: false,
 };
 
 function placesSearchReducer(state = initialState, action) {
@@ -16,16 +16,27 @@ function placesSearchReducer(state = initialState, action) {
         category: undefined,
         places: action.places,
       };
-    case 'REQUEST_AUTOSUGGESTION':
+    case 'REQUEST_PLACE_DETAILS':
       return {
         ...state,
         isLoading: true,
       };
-    case 'RETRIEVE_AUTOSUGGESTION':
+    case 'RETRIEVE_PLACE_DETAILS':
       return {
         ...state,
+        details: action.details,
         isLoading: false,
-        suggestions: action.suggestions,
+      };
+    case 'REQUEST_PLACE_PHOTO':
+      return {
+        ...state,
+        photoLoading: true,
+      };
+    case 'RETRIEVE_PLACE_PHOTO':
+      return {
+        ...state,
+        details: { ...state.details, photo: action.photo },
+        photoLoading: false,
       };
     default:
       return state;

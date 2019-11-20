@@ -22,12 +22,12 @@ const AutosuggestPlaceSearch = props => {
 };
 
 const mapStateToProps = state => ({
-  suggestions: state.planning.placesSearch.suggestions,
-  isLoading: state.planning.placesSearch.isLoading,
+  suggestions: state.planning.placesAutosuggestion.suggestions,
+  isLoading: state.planning.placesAutosuggestion.isLoading,
 });
 
 const mapDispatchToProps = {
-  fetchAutosuggestions: PLANNING.PLACES_SEARCH.fetchAutosuggestions,
+  fetchAutosuggestions: PLANNING.PLACES_AUTOSUGGESTIONS.fetchAutosuggestions,
 };
 
 export default connect(

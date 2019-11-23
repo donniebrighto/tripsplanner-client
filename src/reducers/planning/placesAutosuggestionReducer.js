@@ -17,6 +17,16 @@ function placesAutosuggestionReducer(state = initialState, action) {
         isLoading: false,
         suggestions: action.suggestions,
       };
+    case 'REQUEST_AUTOSUGGESTION_DETAILS':
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case 'RETRIEVE_AUTOSUGGESTION_DETAILS':
+      return {
+        ...state,
+        isLoading: false,
+      };
     default:
       return state;
   }

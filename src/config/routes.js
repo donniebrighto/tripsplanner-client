@@ -5,6 +5,7 @@ import Home from '../components/Home';
 import OAuth2RedirectHandler from '../components/auth/OAuth2RedirectHandler';
 import ExplorePlaces from '../containers/planning/SearchPlacesCardsContainer';
 import Chat from '../containers/planning/Chat';
+import PlaceDetails from '../containers/planning/PlaceDetails';
 
 const planningUrl = '/planning/:id';
 
@@ -36,11 +37,16 @@ const planningRoutes = {
     {
       path: `${planningUrl}/search`,
       component: ExplorePlaces,
+      exact: true,
       link: {
         text: 'Szukaj',
         icon: 'search',
         to: id => `${tripPlanningUrl(id)}/search`,
       },
+    },
+    {
+      path: `${planningUrl}/search/:placeId/:photoReference`,
+      component: PlaceDetails,
     },
     {
       path: `${planningUrl}/schedule`,

@@ -37,6 +37,10 @@ export const local = {
   },
   google: {
     nearby: `${base_url}/google/nearby`,
+    details: `${base_url}/google/details`,
+    autosuggested: `${base_url}/google/autosuggested`,
+    photo: (photo_reference, maxHeight) =>
+      `${base_url}/google/photo?photoreference=${photo_reference}&maxheight=${maxHeight}`,
     default_radius: 5000,
   },
 };

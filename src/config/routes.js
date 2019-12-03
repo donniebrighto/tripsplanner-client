@@ -2,7 +2,7 @@ import TripCreationForm from '../containers/creation/TripCreationForm';
 import TripPlanningContainer from '../containers/planning/TripPlanningContainer';
 import TripExploringContainer from '../containers/exploring/TripExploringContainer';
 import Home from '../components/Home';
-import OAuth2RedirectHandler from '../components/auth/OAuth2RedirectHandler';
+// import OAuth2RedirectHandler from '../components/auth/OAuth2RedirectHandler';
 import ExplorePlaces from '../containers/planning/SearchPlacesCardsContainer';
 import Chat from '../containers/planning/Chat';
 import PlaceDetails from '../containers/planning/PlaceDetails';
@@ -19,7 +19,7 @@ const mainRoutes = {
       path: '/explore',
       component: TripExploringContainer,
     },
-    { path: '/oauth2/redirect', component: OAuth2RedirectHandler },
+    // { path: '/oauth2/redirect', component: OAuth2RedirectHandler },
   ],
   private: [
     {

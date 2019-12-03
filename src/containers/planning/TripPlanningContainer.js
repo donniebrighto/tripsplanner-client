@@ -3,14 +3,14 @@ import { Dimmer, Grid, GridColumn, GridRow, Loader } from 'semantic-ui-react';
 import { AUTHENTICATION } from '../../actions';
 import { connect } from 'react-redux';
 import TaskBar from '../../components/planning/TaskBar/TaskBar';
-import MapWrapper from './MapContainer';
+import MapContainer from './MapContainer';
 import TripDetailsOperations from '../../components/planning/TripDetailsOperations';
 import { PLANNING } from '../../actions/planning';
 
 import { Stomp } from '@stomp/stompjs';
 
 const socketsConfig = (tripId, props) => ({
-  endpoint: 'ws://localhost:8080/ws',
+  endpoint: `ws://trips-planner-api.herokuapp.com/ws`,
   topics: [
     {
       destination: `/topic/${tripId}/chat`,
@@ -26,6 +26,14 @@ const socketsConfig = (tripId, props) => ({
         const { notify } = props;
         const notification = JSON.parse(payload.body);
         notify(notification);
+      },
+    },
+    {
+      destination: `/topic/${tripId}/trip-points`,
+      onMessageReceived: payload => {
+        const { addTripPoint } = props;
+        const tripPoint = JSON.parse(payload.body);
+        addTripPoint(tripId, tripPoint);
       },
     },
   ],
@@ -139,7 +147,10 @@ class TripPlanningContainer extends React.Component {
             width={10}
             style={{ minHeight: '500px', paddingLeft: '0px' }}
           >
-            <MapWrapper locationId={props.details.destination.locationId} />
+            <MapContainer
+              style={{ height: '100%' }}
+              locationId={props.details.destination.locationId}
+            />
           </GridColumn>
         </GridRow>
       </Grid>
@@ -160,6 +171,7 @@ const mapDispatchToProps = {
   registerClient: PLANNING.WEBSOCKETS_CONTEXT.registerClient,
   unregisterClient: PLANNING.WEBSOCKETS_CONTEXT.unregisterClient,
   addMessage: PLANNING.CHAT.addMessage,
+  addTripPoint: PLANNING.PLAN.addTripPoint,
 };
 
 export default connect(

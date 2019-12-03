@@ -7,7 +7,7 @@ export const here = {
   autosuggest: `https://places.cit.api.here.com/places/v1/autosuggest?app_id=${HERE_APP_ID}&app_code=${HERE_APP_CODE}`,
 };
 
-const base_url = 'http://localhost:8080';
+export const base_url = 'http://trips-planner-api.herokuapp.com';
 const oauth2_redirect_uri = 'http://localhost:3000/oauth2/redirect';
 
 export const local = {
@@ -28,6 +28,11 @@ export const local = {
     active: `${base_url}/trips/active`,
     addMember: id => `${base_url}/trips/${id}/member`,
     chatMessages: id => `${base_url}/trips/${id}/chat`,
+    days: id => `${base_url}/trips/${id}/days`,
+    pointsByDay: id => `${base_url}/trips/${id}/points-by-day`,
+    pointsDetails: id => `${base_url}/trips/${id}/points`,
+    pointDetails: id => `${base_url}/trips/${id}/point`,
+    deletePoint: (tripId, pointId) => `${base_url}/trips/${tripId}/${pointId}`,
   },
   tag: {
     findAll: `${base_url}/trips/tags`,

@@ -1,5 +1,7 @@
 import React from 'react';
 import { Flag, Header, Icon, Label } from 'semantic-ui-react';
+import moment from 'moment';
+import 'moment/locale/pl';
 
 const subheaderStyles = {
   padding: '2px 0px',
@@ -21,7 +23,8 @@ const TripHeader = props => {
       </Header.Subheader>
       <Header.Subheader style={subheaderStyles}>
         <Icon name="calendar alternate outline" />
-        {props.date}
+        {moment(props.startDate).format('LL')}-
+        {moment(props.endDate).format('LL')}
       </Header.Subheader>
       <Header.Subheader style={subheaderStyles}>{tagsLabels}</Header.Subheader>
     </Header>

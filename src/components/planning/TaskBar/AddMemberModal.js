@@ -18,11 +18,9 @@ const AddMemberModal = props => (
         value={props.member}
         options={props.suggestion}
         loading={props.isLoading}
-        minCharacters={3}
+        minCharacters={1}
         onChange={props.fillMemberToAdd}
-        onSearchChange={(e, { searchQuery, minCharacters }) =>
-          props.suggest(searchQuery, minCharacters)
-        }
+        onSearchChange={(e, { searchQuery }) => props.suggest(searchQuery)}
       />
       <Button
         style={{ marginTop: '10px' }}
@@ -45,8 +43,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  suggest: (searchQuery, minCharacters) => {
-    if (searchQuery.length < minCharacters) return;
+  suggest: searchQuery => {
     dispatch(PLANNING.MEMBER_ADDITION.suggestMembersToAdd(searchQuery));
   },
   addMember: (id, member) => () =>

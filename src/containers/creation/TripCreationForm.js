@@ -23,7 +23,7 @@ const TripCreationForm = props => {
     <Container style={{ paddingBottom: '15px' }}>
       <SectionHeader
         title="Stwórz wycieczkę"
-        subtitle="Wypełnij poniższy formularz, aby rozpocząć tworzenia planu wycieczki"
+        subtitle="Wypełnij poniższy formularz, aby rozpocząć tworzenie planu wycieczki"
         iconName="edit outline"
       />
       <Form onSubmit={props.submit(props)}>

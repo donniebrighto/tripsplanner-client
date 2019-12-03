@@ -5,6 +5,8 @@ import { PLACES_SEARCH } from './placesSearchActions';
 import { CHAT } from './chatActions';
 import { WEBSOCKETS_CONTEXT } from './websocketsContextActions';
 import { PLACES_AUTOSUGGESTIONS } from './placesAutosuggestionActions';
+import { TRIP_POINTS } from './tripPointsActions';
+import { PLAN } from './planActions';
 
 export const PLANNING = {
   fetchTripDetails,
@@ -14,4 +16,6 @@ export const PLANNING = {
   CHAT,
   WEBSOCKETS_CONTEXT,
   PLACES_AUTOSUGGESTIONS,
+  TRIP_POINTS,
+  PLAN,
 };

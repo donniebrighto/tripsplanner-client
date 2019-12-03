@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'semantic-ui-react';
+import { Button, Icon } from 'semantic-ui-react';
 import { categories } from './filterCategories';
 import FilterButton from '../../../containers/planning/FilterButton';
 import AutosuggestPlaceSearch from '../../../containers/planning/AutosuggestPlaceSearch';
@@ -26,14 +26,9 @@ const SearchPlacesPanel = () => {
       }}
     >
       <Button.Group style={{ marginBottom: '20px' }}>
-        <Button basic color="red">
-          Edycja
-        </Button>
-        <Button basic color="green">
-          Powiadomienia
-        </Button>
         <Button basic color="blue">
-          Pomoc
+          <Icon name="share square outline" color="blue" />
+          Udostępnij
         </Button>
       </Button.Group>
       <div style={{ display: 'flex' }}>

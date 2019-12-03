@@ -55,7 +55,10 @@ const mapResponseDataToUserDto = data => {
     key: user.email,
     text: user.email,
     value: user.email,
-    image: { avatar: true, src: user.imageUrl },
+    image: {
+      avatar: true,
+      src: user.imageUrl,
+    },
   }));
 };
 

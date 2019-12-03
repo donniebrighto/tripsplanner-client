@@ -15,10 +15,14 @@ const Home = () => (
     <Segment placeholder>
       <Header icon>
         <Icon name="pdf file outline" />
-        Strona startowa UNDER DEVELOPMENT XD
+        Kreator Podróży
+        <Header.Subheader>
+          Zaplanuj swoją podróż razem z przyjaciółmi
+        </Header.Subheader>
       </Header>
-      <Button primary>Ten przycisk nic nie robi</Button>
-      <Container></Container>
+      <Button basic color="red">
+        Wypróbuj
+      </Button>
     </Segment>
 
     <Grid columns={3}>

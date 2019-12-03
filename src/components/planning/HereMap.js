@@ -7,18 +7,18 @@ class HereMap extends Component {
   platform;
   maptypes;
   map;
+  ui;
 
   constructor(props) {
     super(props);
     this.platform = new window.H.service.Platform({
       apikey: `${HERE_MAPS_API_KEY}`,
     });
-
-    this.maptypes = this.platform.createDefaultLayers();
   }
 
   componentDidMount() {
     const { lng, lat } = this.props;
+    this.maptypes = this.platform.createDefaultLayers();
     this.map = new window.H.Map(
       document.getElementById(MAP_ID),
       this.maptypes.vector.normal.map,
@@ -45,6 +45,69 @@ class HereMap extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState, nextContext) {
+    this.ui = window.H.ui.UI.createDefault(this.map, this.maptypes);
+    this.updateMapLocation(nextProps);
+
+    if (this.doesPlacesDiffer(nextProps)) {
+      this.map.removeObjects(this.map.getObjects());
+      try {
+        const { places } = nextProps;
+        places.forEach(place => {
+          this.setupMarker(place);
+        });
+      } catch (e) {
+        console.log('HERE ERROR', e);
+      }
+    }
+
+    return false;
+  }
+
+  doesPlacesDiffer(nextProps) {
+    const { places } = this.props;
+    if (places.length !== nextProps.places.length) {
+      return true;
+    }
+    for (let i = 0; i < places.length; i++) {
+      if (!this.areObjectSame(places[i], nextProps.places[i])) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  areObjectSame(x, y) {
+    for (let propertyName in x) {
+      if (x[propertyName] !== y[propertyName]) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  setupMarker(place) {
+    const icon = new window.H.map.Icon(place.icon, {
+      size: {
+        w: 30,
+        h: 30,
+      },
+    });
+    const coords = {
+      lat: Number.parseFloat(place.geometry.location.lat),
+      lng: Number.parseFloat(place.geometry.location.lng),
+    };
+    const marker = new window.H.map.Marker(coords, { icon: icon });
+    marker.setData(`<p>${place.name}<br>${place.vicinity}</p>`);
+    marker.addEventListener('tap', event => {
+      const bubble = new window.H.ui.InfoBubble(event.target.getGeometry(), {
+        content: 'Test',
+      });
+      this.ui.addBubble(bubble);
+    });
+    this.map.addObject(marker);
+  }
+
+  updateMapLocation(nextProps) {
     const { lng, lat } = this.props;
     if (lng !== nextProps.lng && lat !== nextProps.lat) {
       this.map.setCenter({
@@ -52,30 +115,6 @@ class HereMap extends Component {
         lat: nextProps.lat,
       });
     }
-
-    const { places } = nextProps;
-    if (!places.length) return false;
-
-    try {
-      places.forEach(place => {
-        const icon = new window.H.map.Icon(place.icon, {
-          size: {
-            w: 30,
-            h: 30,
-          },
-        });
-        const coords = {
-          lat: Number.parseFloat(place.geometry.location.lat),
-          lng: Number.parseFloat(place.geometry.location.lng),
-        };
-        const marker = new window.H.map.Marker(coords, { icon: icon });
-        this.map.addObject(marker);
-      });
-    } catch (e) {
-      console.log('HERE ERROR', e);
-    }
-
-    return false;
   }
 
   render() {

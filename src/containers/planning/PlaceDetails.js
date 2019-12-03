@@ -13,6 +13,7 @@ import { tripPlanningUrl } from '../../config/routes';
 import { PLANNING } from '../../actions/planning';
 import { connect } from 'react-redux';
 import { local } from '../../config/endpoints';
+import AddToPlanPopup from './AddToPlanPopup';
 
 const LoadingIndicator = ({ active }) => {
   return (
@@ -23,7 +24,7 @@ const LoadingIndicator = ({ active }) => {
 };
 
 const formatOpeningHours = opening_hours => {
-  if (!opening_hours) return '';
+  if (!opening_hours) return '\tBrak danych';
   const { weekday_text } = opening_hours;
   return weekday_text.map((weekday, key) => <div key={key}>{weekday}</div>);
 };
@@ -31,7 +32,7 @@ const formatOpeningHours = opening_hours => {
 const PlaceDetails = props => {
   const { placeId, photoReference, id } = useParams();
   const history = useHistory();
-  const { fetchPlaceDetails, details, isLoading, photoLoading } = props;
+  const { fetchPlaceDetails, details, isLoading, resetPlaceDetails } = props;
   useEffect(() => {
     fetchPlaceDetails(placeId);
   }, []);
@@ -48,7 +49,7 @@ const PlaceDetails = props => {
     website,
     url,
     opening_hours,
-  } = details;
+  } = details.result;
 
   return (
     <Container
@@ -62,7 +63,10 @@ const PlaceDetails = props => {
     >
       <div>
         <Button
-          onClick={() => history.push(`${tripPlanningUrl(id)}/search`)}
+          onClick={() => {
+            resetPlaceDetails();
+            history.push(`${tripPlanningUrl(id)}/search`);
+          }}
           basic
           icon="arrow left"
           floated="left"
@@ -73,7 +77,6 @@ const PlaceDetails = props => {
           </Header>
         </div>
         <div>
-          <LoadingIndicator active={photoLoading} />
           <Image
             src={local.google.photo(photoReference, 200)}
             centered
@@ -93,9 +96,11 @@ const PlaceDetails = props => {
         <Button as="a" target="_blank" href={url} basic floated="left">
           Sprawdź w Google
         </Button>
-        <Button basic color="green" floated="right">
-          Dodaj do planu
-        </Button>
+        <AddToPlanPopup placeId={placeId} position="bottom right">
+          <Button basic color="green" floated="right">
+            Dodaj do planu
+          </Button>
+        </AddToPlanPopup>
       </div>
     </Container>
   );
@@ -109,6 +114,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   fetchPlaceDetails: PLANNING.PLACES_SEARCH.fetchPlaceDetails,
+  resetPlaceDetails: PLANNING.PLACES_SEARCH.resetPlaceDetails,
 };
 
 export default connect(

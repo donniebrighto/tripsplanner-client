@@ -66,18 +66,18 @@ const cachedPlaces = [
 const fetchPlaces = category => async dispatch => {
   dispatch(requestPlaces(category));
   try {
-    // const response = await client().get(local.google.nearby, {
-    //   params: {
-    //     language: 'pl',
-    //     type: category,
-    //     location: localStorage.getItem('coordinates'),
-    //     radius: local.google.default_radius,
-    //   },
-    // });
-    // const { data } = response;
-    // console.log(data);
-    // const places = data.results;
-    dispatch(retrievePlaces(cachedPlaces));
+    const response = await client().get(local.google.nearby, {
+      params: {
+        language: 'pl',
+        type: category,
+        location: localStorage.getItem('coordinates'),
+        radius: local.google.default_radius,
+      },
+    });
+    const { data } = response;
+    console.log(data);
+    const places = data.results;
+    dispatch(retrievePlaces(places));
   } catch (e) {
     console.log(e);
   }
@@ -92,9 +92,14 @@ const retrievePlaceDetails = details => ({
   details,
 });
 
+const resetPlaceDetails = () => ({
+  type: 'RESET_DETAILS',
+});
+
 const details = {
   name: 'Test',
   rating: '4.5',
+  icon: 'https://maps.gstatic.com/mapfiles/place_api/icons/museum-71.png',
   vicinity: 'ul. Kluczborska 37, Wrocław',
   international_phone_number: '+ 48 502 925 686',
   website: 'https://wawrzyniak.info',
@@ -109,6 +114,12 @@ const details = {
       'niedziela: Zamknięte',
     ],
   },
+  geometry: {
+    location: {
+      lat: '51.1095529',
+      lng: '17.0321067',
+    },
+  },
   url: 'https://wawrzyniak.info',
 };
 
@@ -120,10 +131,10 @@ const fetchPlaceDetails = place_id => async dispatch => {
         place_id,
         language: 'pl',
         fields:
-          'name,rating,opening_hours/weekday_text,geometry/location,vicinity,international_phone_number,website,url',
+          'name,rating,icon,opening_hours/weekday_text,geometry/location,vicinity,international_phone_number,website,url',
       },
     });
-    dispatch(retrievePlaceDetails(detailsResponse.data.result));
+    dispatch(retrievePlaceDetails(detailsResponse.data));
   } catch (e) {
     console.log(e);
   }
@@ -132,4 +143,5 @@ const fetchPlaceDetails = place_id => async dispatch => {
 export const PLACES_SEARCH = {
   fetchPlaces,
   fetchPlaceDetails,
+  resetPlaceDetails,
 };

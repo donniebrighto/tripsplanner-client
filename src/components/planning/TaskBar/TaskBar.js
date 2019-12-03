@@ -22,6 +22,8 @@ const TaskBar = props => {
           name={name}
           flag={destination.iso2flag}
           destination={destination.label}
+          startDate={startDate}
+          endDate={endDate}
           date={`${startDate} - ${endDate}`}
           tags={tags}
         />

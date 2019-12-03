@@ -6,6 +6,7 @@ import OAuth2RedirectHandler from '../components/auth/OAuth2RedirectHandler';
 import ExplorePlaces from '../containers/planning/SearchPlacesCardsContainer';
 import Chat from '../containers/planning/Chat';
 import PlaceDetails from '../containers/planning/PlaceDetails';
+import PlanContainer from '../containers/planning/PlanContainer';
 
 const planningUrl = '/planning/:id';
 
@@ -50,7 +51,7 @@ const planningRoutes = {
     },
     {
       path: `${planningUrl}/schedule`,
-      component: () => null,
+      component: PlanContainer,
       link: {
         text: 'Plan',
         icon: 'list alternate outline',

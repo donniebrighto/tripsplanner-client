@@ -3,13 +3,23 @@ import { Button, Card, Header, Label } from 'semantic-ui-react';
 import { useHistory, useParams } from 'react-router';
 import { tripPlanningUrl } from '../../config/routes';
 import Rating from './Rating';
+import AddToPlanPopup from '../../containers/planning/AddToPlanPopup';
+
+const categoryMapping = {
+  museum: 'muzeum',
+  tourist_attraction: 'atrakcja turystyczna',
+  synagogue: 'synagoga',
+  point_of_interest: 'punkt zainteresowań',
+};
 
 function mapCategoriesToLabels(categories) {
-  return categories.map((category, key) => (
-    <Label key={key} tag>
-      {category}
-    </Label>
-  ));
+  return categories.map(category => categoryMapping[category]).toString();
+
+  //   (
+  //   <Label key={key} tag>
+  //     {category}
+  //   </Label>
+  // ));
 }
 
 const SearchedPlaceCard = props => {
@@ -36,9 +46,8 @@ const SearchedPlaceCard = props => {
           <Rating rating={rating} />
           <Header.Subheader>Liczba ocen: {user_ratings_total}</Header.Subheader>
         </Header>
-        <Card.Header>
-          {name} {categoriesLabels}
-        </Card.Header>
+        <Card.Header>{name}</Card.Header>
+        <Card.Meta>{categoriesLabels}</Card.Meta>
         <Card.Meta>Adres: {address}</Card.Meta>
         <Card.Meta>Przedział cen: {priceCategory}</Card.Meta>
       </Card.Content>
@@ -47,7 +56,7 @@ const SearchedPlaceCard = props => {
           onClick={() =>
             history.push(
               `${tripPlanningUrl(id)}/search/${place_id}/${
-                photos.length ? photos[0].photo_reference : ''
+                photos && photos.length ? photos[0].photo_reference : ''
               }`
             )
           }
@@ -56,9 +65,11 @@ const SearchedPlaceCard = props => {
         >
           Więcej
         </Button>
-        <Button basic floated="right" color="green">
-          Dodaj do planu
-        </Button>
+        <AddToPlanPopup placeId={place_id} position="top right">
+          <Button basic floated="right" color="green">
+            Dodaj do planu
+          </Button>
+        </AddToPlanPopup>
       </Card.Content>
     </Card>
   );

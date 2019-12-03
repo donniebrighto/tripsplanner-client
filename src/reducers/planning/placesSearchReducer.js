@@ -27,16 +27,10 @@ function placesSearchReducer(state = initialState, action) {
         details: action.details,
         isLoading: false,
       };
-    case 'REQUEST_PLACE_PHOTO':
+    case 'RESET_DETAILS':
       return {
         ...state,
-        photoLoading: true,
-      };
-    case 'RETRIEVE_PLACE_PHOTO':
-      return {
-        ...state,
-        details: { ...state.details, photo: action.photo },
-        photoLoading: false,
+        details: undefined,
       };
     default:
       return state;

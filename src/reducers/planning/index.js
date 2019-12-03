@@ -6,6 +6,8 @@ import websocketsContextReducer from './websocketsContextReducer';
 import memberAdditionReducer from './memberAdditionReducer';
 import tripPlanningReducer from './tripPlanningReducer';
 import placesAutosuggestionReducer from './placesAutosuggestionReducer';
+import tripPointsReducer from './tripPointsReducer';
+import planReducer from './planReducer';
 
 export default combineReducers({
   chat: chatReducer,
@@ -15,4 +17,6 @@ export default combineReducers({
   placesAutosuggestion: placesAutosuggestionReducer,
   tripPlanning: tripPlanningReducer,
   websocketsContext: websocketsContextReducer,
+  tripPoints: tripPointsReducer,
+  plan: planReducer,
 });
